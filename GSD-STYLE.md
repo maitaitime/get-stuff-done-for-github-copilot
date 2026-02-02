@@ -1,22 +1,22 @@
 # GSD-STYLE.md
 
-> **Comprehensive reference.** Core rules auto-load from `.claude/rules/`. This document provides deep explanations and examples for when you need the full picture.
+> **Comprehensive reference.** Core rules auto-load from `.KiloCode/rules/`. This document provides deep explanations and examples for when you need the full picture.
 
-This document explains how GSD is written so future Claude instances can contribute consistently.
+This document explains how GSD is written so future KiloCode instances can contribute consistently.
 
 ## Core Philosophy
 
-GSD is a **meta-prompting system** where every file is both implementation and specification. Files teach Claude how to build software systematically. The system optimizes for:
+GSD is a **meta-prompting system** where every file is both implementation and specification. Files teach KiloCode how to build software systematically. The system optimizes for:
 
-- **Solo developer + Claude workflow** (no enterprise patterns)
-- **Context engineering** (manage Claude's context window deliberately)
+- **Solo developer + KiloCode workflow** (no enterprise patterns)
+- **Context engineering** (manage KiloCode's context window deliberately)
 - **Plans as prompts** (PLAN.md files are executable, not documents to transform)
 
 ---
 
 ## File Structure Conventions
 
-### Slash Commands (`commands/gsd/*.md`)
+### Slash Commands (`*.md`)
 
 ```yaml
 ---
@@ -28,6 +28,7 @@ allowed-tools: [Read, Write, Bash, Glob, Grep, AskUserQuestion]
 ```
 
 **Section order:**
+
 1. `<objective>` — What/why/when (always present)
 2. `<execution_context>` — @-references to workflows, templates, references
 3. `<context>` — Dynamic content: `$ARGUMENTS`, bash output, @file refs
@@ -36,11 +37,12 @@ allowed-tools: [Read, Write, Bash, Glob, Grep, AskUserQuestion]
 
 **Commands are thin wrappers.** Delegate detailed logic to workflows.
 
-### Workflows (`get-shit-done/workflows/*.md`)
+### Workflows (`get-stuff-done/workflows/*.md`)
 
 No YAML frontmatter. Structure varies by workflow.
 
 **Common tags** (not all workflows use all of these):
+
 - `<purpose>` — What this workflow accomplishes
 - `<when_to_use>` or `<trigger>` — Decision criteria
 - `<required_reading>` — Prerequisite files
@@ -50,27 +52,31 @@ No YAML frontmatter. Structure varies by workflow.
 Some workflows use domain-specific tags like `<philosophy>`, `<references>`, `<planning_principles>`, `<decimal_phase_numbering>`.
 
 **When using `<step>` elements:**
+
 - `name` attribute: snake_case (e.g., `name="load_project_state"`)
 - `priority` attribute: Optional ("first", "second")
 
 **Key principle:** Match the style of the specific workflow you're editing.
 
-### Templates (`get-shit-done/templates/*.md`)
+### Templates (`get-stuff-done/templates/*.md`)
 
 Structure varies. Common patterns:
+
 - Most start with `# [Name] Template` header
 - Many include a `<template>` block with the actual template content
 - Some include examples or guidelines sections
 
 **Placeholder conventions:**
+
 - Square brackets: `[Project Name]`, `[Description]`
 - Curly braces: `{phase}-{plan}-PLAN.md`
 
-### References (`get-shit-done/references/*.md`)
+### References (`get-stuff-done/references/*.md`)
 
 Typically use outer XML containers related to filename, but structure varies.
 
 Examples:
+
 - `principles.md` → `<principles>...</principles>`
 - `checkpoints.md` → `<overview>` then `<checkpoint_types>`
 - `plan-format.md` → `<overview>` then `<core_principle>`
@@ -86,6 +92,7 @@ Internal organization varies — semantic sub-containers, markdown headers withi
 XML tags serve semantic purposes. Use Markdown headers for hierarchy within.
 
 **DO:**
+
 ```xml
 <objective>
 ## Primary Goal
@@ -98,6 +105,7 @@ Build authentication system
 ```
 
 **DON'T:**
+
 ```xml
 <section name="objective">
   <subsection name="primary-goal">
@@ -119,7 +127,8 @@ Build authentication system
 ```
 
 **Task types:**
-- `type="auto"` — Claude executes autonomously
+
+- `type="auto"` — KiloCode executes autonomously
 - `type="checkpoint:human-verify"` — User must verify
 - `type="checkpoint:decision"` — User must choose
 
@@ -163,30 +172,32 @@ Build authentication system
 ## @-Reference Patterns
 
 **Static references** (always load):
+
 ```
-@~/.claude/get-shit-done/workflows/execute-phase.md
-@.planning/PROJECT.md
+@~/.KiloCode/get-stuff-done/workflows/execute-phase.md
+@.gsd/PROJECT.md
 ```
 
 **Conditional references** (based on existence):
+
 ```
-@.planning/DISCOVERY.md (if exists)
+@.gsd/DISCOVERY.md (if exists)
 ```
 
-**@-references are lazy loading signals.** They tell Claude what to read, not pre-loaded content.
+**@-references are lazy loading signals.** They tell KiloCode what to read, not pre-loaded content.
 
 ---
 
 ## Naming Conventions
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Files | kebab-case | `execute-phase.md` |
-| Commands | `gsd:kebab-case` | `gsd:execute-phase` |
-| XML tags | kebab-case | `<execution_context>` |
-| Step names | snake_case | `name="load_project_state"` |
-| Bash variables | CAPS_UNDERSCORES | `PHASE_ARG`, `PLAN_START_TIME` |
-| Type attributes | colon separator | `type="checkpoint:human-verify"` |
+| Type            | Convention       | Example                          |
+| --------------- | ---------------- | -------------------------------- |
+| Files           | kebab-case       | `execute-phase.md`               |
+| Commands        | `gsd:kebab-case` | `gsd:execute-phase`              |
+| XML tags        | kebab-case       | `<execution_context>`            |
+| Step names      | snake_case       | `name="load_project_state"`      |
+| Bash variables  | CAPS_UNDERSCORES | `PHASE_ARG`, `PLAN_START_TIME`   |
+| Type attributes | colon separator  | `type="checkpoint:human-verify"` |
 
 ---
 
@@ -304,14 +315,14 @@ Use subagents for autonomous work. Reserve main context for user interaction.
 
 ### Types
 
-| Type | Use |
-|------|-----|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `test` | Tests only (TDD RED) |
+| Type       | Use                         |
+| ---------- | --------------------------- |
+| `feat`     | New feature                 |
+| `fix`      | Bug fix                     |
+| `test`     | Tests only (TDD RED)        |
 | `refactor` | Code cleanup (TDD REFACTOR) |
-| `docs` | Documentation/metadata |
-| `chore` | Config/dependencies |
+| `docs`     | Documentation/metadata      |
+| `chore`    | Config/dependencies         |
 
 ### Rules
 
@@ -324,7 +335,7 @@ Use subagents for autonomous work. Reserve main context for user interaction.
 
 ## UX Patterns
 
-**Visual patterns:** `get-shit-done/references/ui-brand.md`
+**Visual patterns:** `get-stuff-done/references/ui-brand.md`
 
 Orchestrators @-reference ui-brand.md for stage banners, checkpoint boxes, status symbols, and completion displays.
 
@@ -344,6 +355,7 @@ Orchestrators @-reference ui-brand.md for stage banners, checkpoint boxes, statu
 ───────────────────────────────────────────────────────────────
 
 **Also available:**
+
 - Alternative option
 - Another option
 
@@ -368,6 +380,7 @@ Information flows through layers:
 4. **Reference** — Deep dive on specific concept
 
 Each layer answers different questions:
+
 - Command: "Should I use this?"
 - Workflow: "What happens?"
 - Template: "What does output look like?"
@@ -394,12 +407,14 @@ Quick mode provides GSD guarantees for ad-hoc tasks without full planning overhe
 ### When to Use Quick Mode
 
 **Quick mode:**
+
 - Task is small and self-contained
 - You know exactly what to do (no research needed)
 - Task doesn't warrant full phase planning
 - Mid-project fixes or small additions
 
 **Full planning:**
+
 - Task involves multiple subsystems
 - You need to investigate approach first
 - Task is part of a larger phase
@@ -408,7 +423,7 @@ Quick mode provides GSD guarantees for ad-hoc tasks without full planning overhe
 ### Quick Task Structure
 
 ```
-.planning/quick/
+.gsd/quick/
 ├── 001-add-dark-mode/
 │   ├── PLAN.md
 │   └── SUMMARY.md
@@ -427,8 +442,8 @@ Quick tasks update STATE.md, NOT ROADMAP.md:
 ```markdown
 ### Quick Tasks Completed
 
-| # | Description | Date | Commit | Directory |
-|---|-------------|------|--------|-----------|
+| #   | Description          | Date       | Commit  | Directory                                       |
+| --- | -------------------- | ---------- | ------- | ----------------------------------------------- |
 | 001 | Add dark mode toggle | 2026-01-19 | abc123f | [001-add-dark-mode](./quick/001-add-dark-mode/) |
 ```
 
@@ -450,7 +465,7 @@ docs(quick-NNN): description
 
 Quick task completed.
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: KiloCode Opus 4.5 <noreply@anthropic.com>
 ```
 
 ---
@@ -501,7 +516,7 @@ How to make tests pass
 3. **Commands delegate to workflows**
 4. **Progressive disclosure hierarchy**
 5. **Imperative, brief, technical** — no filler, no sycophancy
-6. **Solo developer + Claude** — no enterprise patterns
+6. **Solo developer + KiloCode** — no enterprise patterns
 7. **Context size as quality constraint** — split aggressively
 8. **Temporal language banned** — current state only
 9. **Plans ARE prompts** — executable, not documents
