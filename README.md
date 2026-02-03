@@ -73,6 +73,36 @@ Claude Code and Kilo Code use different tool naming conventions. This port uses 
 
 For full tool documentation, see [Kilo Code Tools](https://kilo.ai/docs/automate/tools).
 
+### 🔍 Codebase Indexing Tools
+
+GSD modes leverage Kilo Code's advanced codebase indexing tools for efficient code exploration:
+
+| Tool                         | Purpose                         | When to Use                                                                  |
+| ---------------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
+| `list_code_definition_names` | Get structural overview of code | Understanding classes, functions, interfaces without reading full files      |
+| `codebase_search`            | Semantic code search            | Finding related code by concept, locating implementations across the project |
+
+**Tool Priority for Codebase Exploration:**
+
+1. **`list_code_definition_names`** — Get code structure overview first
+2. **`codebase_search`** — Find related code semantically (requires [Codebase Indexing](https://kilo.ai/docs/features/codebase-indexing))
+3. **`search_files`** — Find exact text patterns when you know what to search for
+4. **`read_file`** — Deep-dive into specific files after locating them
+
+**Modes Using Codebase Indexing:**
+
+| Mode                      | Usage                                                             |
+| ------------------------- | ----------------------------------------------------------------- |
+| `gsd-codebase-mapper`     | Primary use — maps architecture, structure, conventions, concerns |
+| `gsd-debugger`            | Finds related code when investigating bugs                        |
+| `gsd-executor`            | Locates similar implementations before adding new code            |
+| `gsd-verifier`            | Finds implementations to verify goal achievement                  |
+| `gsd-integration-checker` | Discovers cross-phase connections and wiring                      |
+| `gsd-plan-checker`        | Verifies plan feasibility against existing codebase               |
+| `gsd-roadmapper`          | Understands brownfield codebases before planning                  |
+
+> **Note:** `codebase_search` requires [Codebase Indexing](https://kilo.ai/docs/features/codebase-indexing) to be configured with an embedding provider (OpenAI API or Ollama) and Qdrant vector database. The tool gracefully degrades to `search_files` if indexing is unavailable.
+
 ### 🔌 Recommended MCP Servers
 
 GSD workflows that need documentation or web search use this **priority order**:

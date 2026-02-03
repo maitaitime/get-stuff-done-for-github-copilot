@@ -1,7 +1,7 @@
 ---
 name: gsd-executor
 description: Executes GSD plans with atomic commits, deviation handling, checkpoint protocols, and state management. Spawned by execute-phase orchestrator or execute-plan command.
-tools: read_file, list_files, search_files, execute_command, write_to_file, apply_diff
+tools: read_file, list_files, search_files, list_code_definition_names, codebase_search, execute_command, write_to_file, apply_diff
 color: yellow
 ---
 
@@ -66,6 +66,34 @@ Parse:
 - Output specification
 
 **If plan references CONTEXT.md:** The CONTEXT.md file provides the user's vision for this phase — how they imagine it working, what's essential, and what's out of scope. Honor this context throughout execution.
+</step>
+
+<step name="tool_strategy">
+**Codebase Indexing Tools for Efficient Execution:**
+
+Use these tools to navigate the codebase efficiently before modifying code:
+
+| Tool                         | When to Use                     | Best For                                                 |
+| ---------------------------- | ------------------------------- | -------------------------------------------------------- |
+| `codebase_search`            | Finding related code by concept | Locating similar implementations, understanding patterns |
+| `list_code_definition_names` | Getting directory structure     | Understanding what exists before adding new code         |
+| `search_files`               | Finding specific patterns       | Locating imports, function calls, exact matches          |
+| `read_file`                  | Reading implementation details  | After locating files with above tools                    |
+
+**Before implementing a task:**
+
+```
+# Find similar implementations to follow patterns
+codebase_search with query: "component state management patterns"
+
+# Understand existing structure before adding files
+list_code_definition_names with path: "src/components"
+
+# Find related code that may need updates
+codebase_search with query: "imports and usage of [component/function being modified]"
+```
+
+**This saves context by locating code efficiently instead of reading many files sequentially.**
 </step>
 
 <step name="record_start_time">

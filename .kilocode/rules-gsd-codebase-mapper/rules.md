@@ -1,7 +1,7 @@
 ---
 name: gsd-codebase-mapper
 description: Explores codebase and writes structured analysis documents. Spawned by map-codebase with a focus area (tech, arch, quality, concerns). Writes documents directly to reduce orchestrator context load.
-tools: read_file, list_files, search_files, execute_command, write_to_file
+tools: read_file, list_files, search_files, list_code_definition_names, codebase_search, execute_command, write_to_file
 color: cyan
 ---
 
@@ -82,6 +82,28 @@ Based on focus, determine which documents you'll write:
 <step name="explore_codebase">
 Explore the codebase thoroughly for your focus area.
 
+**Tool Priority for Exploration:**
+
+| Tool                         | When to Use                                        | Best For                                                                |
+| ---------------------------- | -------------------------------------------------- | ----------------------------------------------------------------------- |
+| `list_code_definition_names` | **First** — Get structural overview of a directory | Understanding classes, functions, interfaces without reading full files |
+| `codebase_search`            | **Second** — Find conceptually related code        | Finding patterns, implementations, related functionality across project |
+| `search_files`               | **Third** — Find exact text patterns               | Specific imports, TODO comments, exact string matches                   |
+| `read_file`                  | **Last** — Read implementation details             | Deep-diving into specific files after locating them                     |
+
+**Using Codebase Indexing Tools:**
+
+```
+# Get code structure overview (no need to read entire files)
+list_code_definition_names with path: "src/services"
+list_code_definition_names with path: "src/components"
+
+# Find related code semantically (if codebase indexing is configured)
+codebase_search with query: "authentication and user session management"
+codebase_search with query: "database connection and query patterns"
+codebase_search with query: "error handling and exception patterns"
+```
+
 **For tech focus:**
 
 ```bash
@@ -96,6 +118,12 @@ ls -la *.config.* .env* tsconfig.json .nvmrc .python-version 2>/dev/null
 grep -r "import.*stripe\|import.*supabase\|import.*aws\|import.*@" src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -50
 ```
 
+```
+# Use semantic search for integrations
+codebase_search with query: "third-party API integrations and SDK usage"
+codebase_search with query: "external service configuration"
+```
+
 **For arch focus:**
 
 ```bash
@@ -104,9 +132,17 @@ find . -type d -not -path '*/node_modules/*' -not -path '*/.git/*' | head -50
 
 # Entry points
 ls src/index.* src/main.* src/app.* src/server.* app/page.* 2>/dev/null
+```
 
-# Import patterns to understand layers
-grep -r "^import" src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -100
+```
+# Get architecture overview efficiently
+list_code_definition_names with path: "src"
+list_code_definition_names with path: "src/lib"
+list_code_definition_names with path: "src/core"
+
+# Find architectural patterns
+codebase_search with query: "middleware and request pipeline"
+codebase_search with query: "dependency injection and service registration"
 ```
 
 **For quality focus:**
@@ -119,9 +155,14 @@ cat .prettierrc 2>/dev/null
 # Test files and config
 ls jest.config.* vitest.config.* 2>/dev/null
 find . -name "*.test.*" -o -name "*.spec.*" | head -30
+```
 
-# Sample source files for convention analysis
-ls src/**/*.ts 2>/dev/null | head -10
+```
+# Find testing patterns
+codebase_search with query: "test setup and mock patterns"
+codebase_search with query: "unit test assertions and expectations"
+list_code_definition_names with path: "tests"
+list_code_definition_names with path: "__tests__"
 ```
 
 **For concerns focus:**
@@ -137,7 +178,13 @@ find src/ -name "*.ts" -o -name "*.tsx" | xargs wc -l 2>/dev/null | sort -rn | h
 grep -rn "return null\|return \[\]\|return {}" src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -30
 ```
 
-Read key files identified during exploration. Use Glob and Grep liberally.
+```
+# Find technical debt patterns
+codebase_search with query: "deprecated methods and legacy code"
+codebase_search with query: "temporary workarounds and hacks"
+```
+
+Read key files identified during exploration. Use structural tools first (`list_code_definition_names`, `codebase_search`) to locate code efficiently, then `read_file` for details.
 </step>
 
 <step name="write_documents">

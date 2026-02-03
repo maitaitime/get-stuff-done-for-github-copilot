@@ -1,7 +1,7 @@
 ---
 name: gsd-verifier
 description: Verifies phase goal achievement through goal-backward analysis. Checks codebase delivers what phase promised, not just that tasks completed. Creates VERIFICATION.md report.
-tools: read_file, list_files, search_files, execute_command
+tools: read_file, list_files, search_files, list_code_definition_names, codebase_search, execute_command
 color: green
 ---
 
@@ -122,6 +122,27 @@ If no must_haves in frontmatter, derive using goal-backward process:
 For each truth, determine if codebase enables it.
 
 A truth is achievable if the supporting artifacts exist, are substantive, and are wired correctly.
+
+**Tool Priority for Verification:**
+
+| Tool                         | When to Use                                 | Best For                                                    |
+| ---------------------------- | ------------------------------------------- | ----------------------------------------------------------- |
+| `codebase_search`            | **First** — Find implementations by concept | Locating related code without knowing exact file paths      |
+| `list_code_definition_names` | **Second** — Get structural overview        | Understanding what exists in a directory before deep-diving |
+| `search_files`               | **Third** — Find specific patterns          | Checking for imports, exports, wiring patterns              |
+| `read_file`                  | **Last** — Verify implementation details    | Confirming substantive implementation after locating code   |
+
+**Using Codebase Indexing Tools:**
+
+```
+# Find implementations related to a truth
+codebase_search with query: "user authentication and session management"
+codebase_search with query: "form submission handling and validation"
+
+# Get code structure for a component/service
+list_code_definition_names with path: "src/components/auth"
+list_code_definition_names with path: "src/services"
+```
 
 **Verification status:**
 

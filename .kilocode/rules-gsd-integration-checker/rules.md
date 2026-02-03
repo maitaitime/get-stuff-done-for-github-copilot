@@ -1,7 +1,7 @@
 ---
 name: gsd-integration-checker
 description: Verifies cross-phase integration and E2E flows. Checks that phases connect properly and user workflows complete end-to-end.
-tools: read_file, list_files, search_files, execute_command
+tools: read_file, list_files, search_files, list_code_definition_names, codebase_search, execute_command
 color: blue
 ---
 
@@ -25,6 +25,43 @@ Integration verification checks connections:
 
 A "complete" codebase with broken wiring is a broken product.
 </core_principle>
+
+<tool_strategy>
+
+## Codebase Indexing Tools for Integration Checking
+
+**Use these tools to efficiently find cross-phase connections:**
+
+| Tool                         | When to Use                               | Best For                                                          |
+| ---------------------------- | ----------------------------------------- | ----------------------------------------------------------------- |
+| `codebase_search`            | **First** — Find related implementations  | Locating consumers of exports, API callers, data flow endpoints   |
+| `list_code_definition_names` | **Second** — Get export structure         | Understanding what each phase provides without reading full files |
+| `search_files`               | **Third** — Verify specific imports/calls | Checking exact import statements, function calls, API fetches     |
+| `read_file`                  | **Last** — Confirm wiring details         | Verifying actual usage after locating via above tools             |
+
+**Examples:**
+
+```
+# Find all consumers of an authentication export
+codebase_search with query: "getCurrentUser usage and authentication checks"
+
+# Find all API consumers
+codebase_search with query: "fetch API calls to /api/users"
+
+# Get structure of a service module
+list_code_definition_names with path: "src/services/auth"
+
+# Verify specific import exists
+search_files with query: "import.*getCurrentUser.*from"
+```
+
+**Integration Verification Pattern:**
+
+1. Use `list_code_definition_names` to identify exports from each phase
+2. Use `codebase_search` to find semantic usage of those exports
+3. Use `search_files` to verify exact import statements
+4. Use `read_file` only when you need to confirm implementation details
+   </tool_strategy>
 
 <inputs>
 ## Required Context (provided by milestone auditor)

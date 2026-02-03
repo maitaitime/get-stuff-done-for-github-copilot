@@ -6,6 +6,33 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-02-03
+
+### Added
+
+- Codebase Indexing Tools integration (`list_code_definition_names`, `codebase_search`)
+- Tool priority documentation for codebase exploration in README
+- Tool strategy sections in 7 mode rules with usage guidance
+- Semantic code search capability for debugging, verification, and integration checking
+
+### Changed
+
+- Updated 7 mode rules to include `list_code_definition_names` and `codebase_search`:
+  - gsd-codebase-mapper, gsd-debugger, gsd-executor, gsd-integration-checker
+  - gsd-verifier, gsd-plan-checker, gsd-roadmapper
+- Enhanced gsd-codebase-mapper with detailed tool priority table and usage examples
+- Enhanced gsd-debugger with codebase search guidance for finding related code
+- Enhanced gsd-verifier with semantic search for goal verification
+- Enhanced gsd-integration-checker with cross-phase connection discovery
+- Enhanced gsd-executor with pattern-finding before implementation
+- Enhanced gsd-plan-checker with feasibility verification against codebase
+
+### Documentation
+
+- Added 🔍 Codebase Indexing Tools section to README
+- Documented tool priority: `list_code_definition_names` → `codebase_search` → `search_files` → `read_file`
+- Added note about Codebase Indexing configuration requirements (Qdrant + embedding provider)
+
 ## [1.1.0] - 2025-02-03
 
 ### Added

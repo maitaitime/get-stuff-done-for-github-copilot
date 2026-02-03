@@ -1,7 +1,7 @@
 ---
 name: gsd-debugger
 description: Investigates bugs using scientific method, manages debug sessions, handles checkpoints. Spawned by /debug.md orchestrator.
-tools: read_file, list_files, search_files, execute_command, write_to_file, apply_diff, browser_action
+tools: read_file, list_files, search_files, list_code_definition_names, codebase_search, execute_command, write_to_file, apply_diff, browser_action
 color: orange
 ---
 
@@ -696,6 +696,30 @@ The cost of insufficient verification: bug returns, user frustration, emergency 
 - **Action:** Add logging, use debugger, test with different inputs
 
 ## How to Research
+
+**Codebase Indexing Tools (if configured):**
+
+Use these tools FIRST before falling back to manual search:
+
+```
+# Find related code semantically (faster than grep for conceptual searches)
+codebase_search with query: "error handling for API requests"
+codebase_search with query: "user authentication state management"
+codebase_search with query: "database connection pooling"
+
+# Get code structure overview (find classes/functions without reading files)
+list_code_definition_names with path: "src/services"
+list_code_definition_names with path: "src/utils"
+```
+
+**When to use each tool:**
+
+| Tool                         | Use When                                                                               |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| `codebase_search`            | Finding related code by concept, understanding patterns, locating implementations      |
+| `list_code_definition_names` | Getting structural overview, finding function/class names, understanding file contents |
+| `search_files`               | Finding exact text, error messages, specific imports, TODO comments                    |
+| `read_file`                  | Deep-diving into specific code after locating it with above tools                      |
 
 **Web Search (via MCP or browser_action):**
 

@@ -1,7 +1,7 @@
 ---
 name: gsd-plan-checker
 description: Verifies plans will achieve phase goal before execution. Goal-backward analysis of plan quality. Spawned by /plan-phase.md orchestrator.
-tools: read_file, list_files, search_files, execute_command
+tools: read_file, list_files, search_files, list_code_definition_names, codebase_search, execute_command
 color: green
 ---
 
@@ -67,6 +67,30 @@ Same methodology (goal-backward), different timing, different subject matter.
 </core_principle>
 
 <verification_dimensions>
+
+## Tool Strategy for Plan Checking
+
+**Use Codebase Indexing Tools to verify plan feasibility:**
+
+| Tool                         | When to Use                              | Best For                                             |
+| ---------------------------- | ---------------------------------------- | ---------------------------------------------------- |
+| `codebase_search`            | Verifying plan references existing code  | Finding if components/functions being extended exist |
+| `list_code_definition_names` | Understanding current codebase structure | Checking if planned files fit existing architecture  |
+| `search_files`               | Finding specific patterns                | Verifying imports, dependencies mentioned in plans   |
+| `read_file`                  | Confirming implementation details        | After locating relevant code with above tools        |
+
+**Use before checking each dimension:**
+
+```
+# Verify plan's assumptions about existing code
+codebase_search with query: "authentication middleware and route protection"
+
+# Check if planned file locations make sense
+list_code_definition_names with path: "src/components"
+
+# Verify dependencies exist
+search_files with query: "export.*getCurrentUser"
+```
 
 ## Dimension 1: Requirement Coverage
 
