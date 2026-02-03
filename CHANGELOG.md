@@ -6,6 +6,28 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.3.0] - 2025-02-03
+
+### Added
+
+- Exa MCP integration as equal priority to Brave Search for Web Search MCP
+- Exa tools documentation: `web_search_exa`, `get_code_context_exa`, `company_research_exa`, `deep_search_exa`, `crawling_exa`
+- Comparison table in README for choosing between Exa and Brave Search
+- Installation instructions for Exa MCP (npm package and hosted URL)
+
+### Changed
+
+- Updated discovery-phase skill with Exa MCP examples and tool recommendations
+- Enhanced source_hierarchy to show Exa and Brave as equal priority options
+- Updated Level 2 (Standard) and Level 3 (Deep Dive) discovery workflows with Exa tool examples
+- README Web Search MCP section reorganized with comparison table
+
+### Documentation
+
+- Added Exa MCP features table with use case recommendations
+- Documented Exa-specific tools: semantic search, code context, company research, deep search
+- Added note clarifying Exa and Brave are equal priority — choose based on use case
+
 ## [1.2.0] - 2025-02-03
 
 ### Added

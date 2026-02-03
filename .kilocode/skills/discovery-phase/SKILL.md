@@ -30,8 +30,17 @@ NOTE: For comprehensive ecosystem research ("how do experts build this"), use /r
 KiloCode's training data is 6-18 months stale. Always verify.
 
 1. **Context7 MCP FIRST** - Use `use_mcp_tool(context7, ...)` for current docs, no hallucination
-2. **Web Search MCP** - Use `use_mcp_tool(web-search, ...)` when Context7 lacks coverage
+2. **Web Search MCP** - Use Exa or Brave Search (equal priority, choose by use case):
+   - **Exa MCP** - `use_mcp_tool(exa, web_search_exa)` — AI-native semantic search, code search, company research
+   - **Brave Search** - `use_mcp_tool(brave-search, brave_web_search)` — Privacy-first, general queries, news
 3. **browser_action LAST** - Fallback for direct URL access or when MCPs unavailable
+
+**Exa Tools:**
+
+- `web_search_exa` — Search web for any topic, get clean content
+- `get_code_context_exa` — Find code from GitHub, Stack Overflow, docs
+- `company_research_exa` — Research companies
+- `deep_search_exa` — Deep research with query expansion
 
 See ~/.gsd/templates/discovery.md `<discovery_protocol>` for full protocol.
 </source_hierarchy>
@@ -107,7 +116,9 @@ For: Choosing between options, new external integration.
    - "[option A] vs [option B] {current_year}"
    - "[option] known issues"
    - "[option] with [our stack]"
-   - use_mcp_tool(web-search, brave_web_search) or similar
+   - `use_mcp_tool(exa, web_search_exa)` — Best for semantic/conceptual queries
+   - `use_mcp_tool(exa, get_code_context_exa)` — Best for code examples
+   - `use_mcp_tool(brave-search, brave_web_search)` — Best for news, general queries
 
 5. **Cross-verify:** Any Web Search finding → confirm with Context7/official docs.
 
@@ -150,7 +161,10 @@ For: Architectural decisions, novel problems, high-risk choices.
    - Production experiences
    - Gotchas and anti-patterns
    - Recent changes/announcements
-   - use_mcp_tool(web-search, ...) or browser_action fallback
+   - `use_mcp_tool(exa, deep_search_exa)` — Thorough research with query expansion
+   - `use_mcp_tool(exa, company_research_exa)` — When researching vendors/companies
+   - `use_mcp_tool(brave-search, brave_web_search)` — News, general queries
+   - browser_action fallback for direct URL access
 
 5. **Cross-verify ALL findings:**
    - Every Web Search claim → verify with authoritative source

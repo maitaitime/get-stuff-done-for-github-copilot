@@ -128,12 +128,30 @@ GSD workflows that need documentation or web search use this **priority order**:
 
 #### Web Search MCP
 
-For real-time web search, you can use **any** web search MCP server. Popular options include:
+For real-time web search, you can use **any** web search MCP server. **Recommended options:**
 
-- **[Brave Search MCP](https://api.search.brave.com)** — Privacy-first search with independent index
-- **Tavily** — AI-optimized search
-- **SearXNG** — Self-hosted meta-search
-- **Perplexity** — AI-powered search
+| MCP Server                                           | Strength                             | Best For                                     |
+| ---------------------------------------------------- | ------------------------------------ | -------------------------------------------- |
+| **[Exa MCP](https://exa.ai/docs/reference/exa-mcp)** | AI-native semantic search            | Code search, company research, deep research |
+| **[Brave Search MCP](https://api.search.brave.com)** | Privacy-first with independent index | General web queries, news, local search      |
+
+**Other options:** Tavily (AI-optimized), SearXNG (self-hosted), Perplexity (AI-powered)
+
+---
+
+**Exa MCP Features:**
+
+- `web_search_exa` — Search the web and get clean, ready-to-use content
+- `get_code_context_exa` — Find code examples from GitHub, Stack Overflow, and docs
+- `company_research_exa` — Research companies by crawling their websites
+- `deep_search_exa` — Deep search with automatic query expansion (off by default)
+- `crawling_exa` — Get full content from a specific URL (off by default)
+
+**Installation:** `npx -y exa-mcp-server` or use hosted: `https://mcp.exa.ai/mcp`
+
+**Free API Key:** [dashboard.exa.ai/api-keys](https://dashboard.exa.ai/api-keys)
+
+---
 
 **Brave Search Features:**
 
@@ -143,7 +161,9 @@ For real-time web search, you can use **any** web search MCP server. Popular opt
 
 **Free API Key:** [api.search.brave.com/app/keys](https://api.search.brave.com/app/keys)
 
-> **Note:** Users can install and configure any web search MCP that fits their needs. The workflows use `use_mcp_tool` which works with any compatible MCP server.
+---
+
+> **Note:** Users can install and configure any web search MCP that fits their needs. The workflows use `use_mcp_tool` which works with any compatible MCP server. Exa and Brave Search are equal priority — choose based on your use case.
 
 ### Included
 
