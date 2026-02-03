@@ -38,15 +38,86 @@ The original GSD is a brilliant meta-prompting and context engineering system fo
 
 This repository adapts GSD for **Kilo Code** by converting the system to use:
 
-| Original (Claude Code)             | This Port (Kilo Code)           |
-| ---------------------------------- | ------------------------------- |
-| Slash commands (`/new-project.md`) | Skills (`.kilocode/skills/`)    |
-| Agent prompts in `agents/`         | Custom Modes (`.kilocodemodes`) |
-| Claude Code specific paths         | Kilo Code conventions           |
+| Original (Claude Code)             | This Port (Kilo Code)              |
+| ---------------------------------- | ---------------------------------- |
+| Slash commands (`/new-project.md`) | Workflows (`.kilocode/workflows/`) |
+| Agent prompts in `agents/`         | Custom Modes (`.kilocodemodes`)    |
+| Claude Code specific paths         | Kilo Code conventions              |
+
+### Tool Name Equivalency
+
+Claude Code and Kilo Code use different tool naming conventions. This port uses Kilo Code tool names:
+
+| Claude Code Tool         | Kilo Code Tool                    | Description                                                                |
+| ------------------------ | --------------------------------- | -------------------------------------------------------------------------- |
+| `Read`                   | `read_file`                       | Read file contents                                                         |
+| `Write`                  | `write_to_file`                   | Create or overwrite files                                                  |
+| `Edit`                   | `apply_diff`                      | Make surgical changes to files                                             |
+| `Bash`                   | `execute_command`                 | Run terminal commands                                                      |
+| `Grep`                   | `search_files`                    | Regex search across files                                                  |
+| `Glob`                   | `list_files`                      | List directory contents                                                    |
+| `Task`                   | `new_task`                        | Spawn subtasks/subagents                                                   |
+| `AskUserQuestion`        | `ask_followup_question`           | Get user input                                                             |
+| `TodoWrite`              | `update_todo_list`                | Track task progress                                                        |
+| `WebSearch` / `WebFetch` | `use_mcp_tool` → `browser_action` | Documentation & web search (see [MCP Priority](#-recommended-mcp-servers)) |
+| `SlashCommand`           | `switch_mode`                     | Change modes                                                               |
+| `mcp__*`                 | `use_mcp_tool`                    | MCP server tools                                                           |
+
+**Tool Groups (for Custom Modes):**
+
+- `read` — `read_file`, `search_files`, `list_files`, `list_code_definition_names`, `codebase_search`
+- `edit` — `apply_diff`, `write_to_file`, `delete_file`
+- `browser` — `browser_action`
+- `command` — `execute_command`
+- `mcp` — `use_mcp_tool`, `access_mcp_resource`
+
+For full tool documentation, see [Kilo Code Tools](https://kilo.ai/docs/automate/tools).
+
+### 🔌 Recommended MCP Servers
+
+GSD workflows that need documentation or web search use this **priority order**:
+
+| Priority | Tool                                    | Purpose                          | When to Use                                                       |
+| -------- | --------------------------------------- | -------------------------------- | ----------------------------------------------------------------- |
+| 1️⃣       | **Context7 MCP**                        | Up-to-date library documentation | First choice for API docs, code examples, library usage           |
+| 2️⃣       | **Web Search MCP** (e.g., Brave Search) | Real-time web search             | When Context7 doesn't have the library or need broader search     |
+| 3️⃣       | `browser_action`                        | Full browser automation          | Fallback when MCPs unavailable or need to interact with web pages |
+
+#### Context7 MCP
+
+[Context7](https://github.com/upstash/context7) by **Upstash** provides up-to-date, version-specific documentation directly to your LLM. No more hallucinated APIs or outdated code examples.
+
+**Available Tools:**
+
+- `resolve-library-id` — Find Context7 library IDs
+- `query-docs` — Get documentation for a specific library
+
+**Installation:** See [Context7 Installation Guide](https://context7.com/docs/resources/all-clients)
+
+**Free API Key:** [context7.com/dashboard](https://context7.com/dashboard)
+
+#### Web Search MCP
+
+For real-time web search, you can use **any** web search MCP server. Popular options include:
+
+- **[Brave Search MCP](https://api.search.brave.com)** — Privacy-first search with independent index
+- **Tavily** — AI-optimized search
+- **SearXNG** — Self-hosted meta-search
+- **Perplexity** — AI-powered search
+
+**Brave Search Features:**
+
+- `brave_web_search` — General web queries
+- `brave_local_search` — Local business search
+- `brave_news_search` — News articles
+
+**Free API Key:** [api.search.brave.com/app/keys](https://api.search.brave.com/app/keys)
+
+> **Note:** Users can install and configure any web search MCP that fits their needs. The workflows use `use_mcp_tool` which works with any compatible MCP server.
 
 ### Included
 
-- **12 Skills** — Discovery, planning, execution, verification workflows
+- **27 Workflows** — Discovery, planning, execution, verification workflows
 - **11 Custom Modes** — Specialized agent modes (planner, executor, verifier, debugger, etc.)
 - **Templates** — All GSD document templates adapted for Kilo Code
 

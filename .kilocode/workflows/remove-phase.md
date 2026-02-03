@@ -3,10 +3,10 @@ name: gsd:remove-phase
 description: Remove a future phase from roadmap and renumber subsequent phases
 argument-hint: <phase-number>
 allowed-tools:
-  - Read
-  - Write
-  - Bash
-  - Glob
+  - read_file
+  - write_to_file
+  - execute_command
+  - list_files
 ---
 
 <objective>

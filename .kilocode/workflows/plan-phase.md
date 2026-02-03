@@ -4,14 +4,14 @@ description: Create detailed execution plan for a phase (PLAN.md) with verificat
 argument-hint: "[phase] [--research] [--skip-research] [--gaps] [--skip-verify]"
 agent: gsd-planner
 allowed-tools:
-  - Read
-  - Write
-  - Bash
-  - Glob
-  - Grep
-  - Task
-  - WebFetch
-  - mcp__context7__*
+  - read_file
+  - write_to_file
+  - execute_command
+  - list_files
+  - search_files
+  - new_task
+  - browser_action
+  - use_mcp_tool
 ---
 
 <execution_context>

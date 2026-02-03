@@ -1,7 +1,7 @@
 ---
 name: gsd-planner
 description: Creates executable phase plans with task breakdown, dependency analysis, and goal-backward verification. Spawned by /plan-phase.md orchestrator.
-tools: Read, Write, Bash, Glob, Grep, WebFetch, mcp__context7__*
+tools: read_file, list_files, search_files, execute_command, write_to_file, browser_action, use_mcp_tool
 color: green
 ---
 
@@ -100,7 +100,7 @@ Discovery is MANDATORY unless you can prove current context exists.
 
 - Single known library, confirming syntax/version
 - Low-risk decision (easily changed later)
-- Action: Context7 resolve-library-id + query-docs, no DISCOVERY.md needed
+- Action: use_mcp_tool(context7, resolve-library-id + query-docs), no DISCOVERY.md needed
 
 **Level 2 - Standard Research** (15-30 min)
 

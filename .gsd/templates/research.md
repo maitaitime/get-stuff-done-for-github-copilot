@@ -221,11 +221,11 @@ Things that couldn't be fully resolved:
 
 ### Secondary (MEDIUM confidence)
 
-- [WebSearch verified with official source] - [finding + verification]
+- [Web Search verified with official source] - [finding + verification]
 
 ### Tertiary (LOW confidence - needs validation)
 
-- [WebSearch only] - [finding, marked for validation during implementation]
+- [Web Search only] - [finding, marked for validation during implementation]
   </sources>
 
 <metadata>

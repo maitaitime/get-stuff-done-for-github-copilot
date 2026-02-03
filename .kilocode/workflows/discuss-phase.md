@@ -3,12 +3,12 @@ name: gsd:discuss-phase
 description: Gather phase context through adaptive questioning before planning
 argument-hint: "<phase>"
 allowed-tools:
-  - Read
-  - Write
-  - Bash
-  - Glob
-  - Grep
-  - AskUserQuestion
+  - read_file
+  - write_to_file
+  - execute_command
+  - list_files
+  - search_files
+  - ask_followup_question
 ---
 
 <objective>

@@ -3,9 +3,9 @@ name: gsd:research-phase
 description: Research how to implement a phase (standalone - usually use /plan-phase.md instead)
 argument-hint: "[phase]"
 allowed-tools:
-  - Read
-  - Bash
-  - Task
+  - read_file
+  - execute_command
+  - new_task
 ---
 
 <objective>
@@ -21,7 +21,7 @@ Research how to implement a phase. Spawns gsd-phase-researcher agent with phase 
 
 **Orchestrator role:** Parse phase, validate against roadmap, check existing research, gather context, spawn researcher agent, present results.
 
-**Why subagent:** Research burns context fast (WebSearch, Context7 queries, source verification). Fresh 200k context for investigation. Main context stays lean for user interaction.
+**Why subagent:** Research burns context fast (Web Search MCP, Context7 queries, source verification). Fresh 200k context for investigation. Main context stays lean for user interaction.
 </objective>
 
 <context>

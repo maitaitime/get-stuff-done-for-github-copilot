@@ -3,10 +3,10 @@ name: gsd:add-todo
 description: Capture idea or task as todo from current conversation context
 argument-hint: [optional description]
 allowed-tools:
-  - Read
-  - Write
-  - Bash
-  - Glob
+  - read_file
+  - write_to_file
+  - execute_command
+  - list_files
 ---
 
 <objective>

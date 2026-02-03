@@ -3,13 +3,13 @@ name: gsd:verify-work
 description: Validate built features through conversational UAT
 argument-hint: "[phase number, e.g., '4']"
 allowed-tools:
-  - Read
-  - Bash
-  - Glob
-  - Grep
-  - Edit
-  - Write
-  - Task
+  - read_file
+  - execute_command
+  - list_files
+  - search_files
+  - apply_diff
+  - write_to_file
+  - new_task
 ---
 
 <objective>

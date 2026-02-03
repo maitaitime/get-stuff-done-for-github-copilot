@@ -3,11 +3,11 @@ name: gsd:check-todos
 description: List pending todos and select one to work on
 argument-hint: [area filter]
 allowed-tools:
-  - Read
-  - Write
-  - Bash
-  - Glob
-  - AskUserQuestion
+  - read_file
+  - write_to_file
+  - execute_command
+  - list_files
+  - ask_followup_question
 ---
 
 <objective>

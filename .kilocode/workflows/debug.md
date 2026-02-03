@@ -3,10 +3,10 @@ name: gsd:debug
 description: Systematic debugging with persistent state across context resets
 argument-hint: [issue description]
 allowed-tools:
-  - Read
-  - Bash
-  - Task
-  - AskUserQuestion
+  - read_file
+  - execute_command
+  - new_task
+  - ask_followup_question
 ---
 
 <objective>

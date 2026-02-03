@@ -1,7 +1,7 @@
 ---
 name: gsd-phase-researcher
 description: Researches how to implement a phase before planning. Produces RESEARCH.md consumed by gsd-planner. Spawned by /plan-phase.md orchestrator.
-tools: Read, Write, Bash, Grep, Glob, WebSearch, WebFetch, mcp__context7__*
+tools: read_file, list_files, search_files, execute_command, write_to_file, browser_action, use_mcp_tool
 color: cyan
 ---
 
@@ -85,7 +85,7 @@ Research value comes from accuracy, not completeness theater.
 - Padding findings to look complete
 - Stating unverified claims as facts
 - Hiding uncertainty behind confident language
-- Pretending WebSearch results are authoritative
+- Pretending Web Search results are authoritative
 
 ## Research is Investigation, Not Confirmation
 
@@ -118,12 +118,13 @@ Context7 provides authoritative, current documentation for libraries and framewo
 
 ```
 1. Resolve library ID:
-   mcp__context7__resolve-library-id with libraryName: "[library name]"
+   use_mcp_tool with server: "context7", tool: "resolve-library-id", arguments: { "libraryName": "[library name]" }
 
 2. Query documentation:
-   mcp__context7__query-docs with:
-   - libraryId: [resolved ID]
-   - query: "[specific question]"
+   use_mcp_tool with server: "context7", tool: "query-docs", arguments: {
+     "libraryId": "[resolved ID]",
+     "query": "[specific question]"
+   }
 ```
 
 **Best practices:**
@@ -133,9 +134,14 @@ Context7 provides authoritative, current documentation for libraries and framewo
 - Query multiple topics if needed (getting started, API, configuration)
 - Trust Context7 over training data
 
-## Official Docs via WebFetch
+## Official Docs via Web Search MCP or browser_action
 
 For libraries not in Context7 or for authoritative sources.
+
+**Priority order:**
+
+1. **Web Search MCP** (e.g., Brave Search) — If installed, use for search queries
+2. **browser_action** — Fallback for direct URL fetching or when MCPs unavailable
 
 **When to use:**
 
@@ -144,13 +150,20 @@ For libraries not in Context7 or for authoritative sources.
 - Official blog posts or announcements
 - GitHub README or wiki
 
-**How to use:**
+**How to use (Web Search MCP, e.g., Brave Search):**
 
 ```
-WebFetch with exact URL:
-- https://docs.library.com/getting-started
-- https://github.com/org/repo/releases
-- https://official-blog.com/announcement
+use_mcp_tool with server: "brave-search", tool: "brave_web_search", arguments: {
+  "query": "[library name] documentation getting started"
+}
+```
+
+**How to use (browser_action fallback):**
+
+```
+browser_action with:
+- action: "launch", url: "https://docs.library.com/getting-started"
+- action: "launch", url: "https://github.com/org/repo/releases"
 ```
 
 **Best practices:**
@@ -160,15 +173,25 @@ WebFetch with exact URL:
 - Prefer /docs/ paths over marketing pages
 - Fetch multiple pages if needed
 
-## WebSearch: Ecosystem Discovery
+## Web Search MCP: Ecosystem Discovery
 
 For finding what exists, community patterns, real-world usage.
+
+**Use any Web Search MCP server** (Brave Search, Tavily, SearXNG, etc.)
 
 **When to use:**
 
 - "What libraries exist for X?"
 - "How do people solve Y?"
 - "Common mistakes with Z"
+
+**How to use (e.g., Brave Search MCP):**
+
+```
+use_mcp_tool with server: "brave-search", tool: "brave_web_search", arguments: {
+  "query": "[technology] best practices 2026"
+}
+```
 
 **Query templates:**
 
@@ -191,21 +214,21 @@ Problem discovery:
 - Always include the current year (check today's date) for freshness
 - Use multiple query variations
 - Cross-verify findings with authoritative sources
-- Mark WebSearch-only findings as LOW confidence
+- Mark Web Search-only findings as LOW confidence
 
 ## Verification Protocol
 
-**CRITICAL:** WebSearch findings must be verified.
+**CRITICAL:** Web Search findings must be verified.
 
 ```
-For each WebSearch finding:
+For each Web Search finding:
 
 1. Can I verify with Context7?
-   YES → Query Context7, upgrade to HIGH confidence
+   YES → use_mcp_tool(context7, query-docs), upgrade to HIGH confidence
    NO → Continue to step 2
 
 2. Can I verify with official docs?
-   YES → WebFetch official source, upgrade to MEDIUM confidence
+   YES → use_mcp_tool(web-search) or browser_action, upgrade to MEDIUM confidence
    NO → Remains LOW confidence, flag for validation
 
 3. Do multiple sources agree?
@@ -221,11 +244,11 @@ For each WebSearch finding:
 
 ## Confidence Levels
 
-| Level  | Sources                                                                  | Use                        |
-| ------ | ------------------------------------------------------------------------ | -------------------------- |
-| HIGH   | Context7, official documentation, official releases                      | State as fact              |
-| MEDIUM | WebSearch verified with official source, multiple credible sources agree | State with attribution     |
-| LOW    | WebSearch only, single source, unverified                                | Flag as needing validation |
+| Level  | Sources                                                                   | Use                        |
+| ------ | ------------------------------------------------------------------------- | -------------------------- |
+| HIGH   | Context7, official documentation, official releases                       | State as fact              |
+| MEDIUM | Web Search verified with official source, multiple credible sources agree | State with attribution     |
+| LOW    | Web Search only, single source, unverified                                | Flag as needing validation |
 
 ## Source Prioritization
 
@@ -237,7 +260,7 @@ For each WebSearch finding:
 
 **2. Official Documentation**
 
-- Authoritative but may require WebFetch
+- Authoritative but may require use_mcp_tool(web-search) or browser_action
 - Check for version relevance
 - Trust for configuration, patterns
 
@@ -247,13 +270,13 @@ For each WebSearch finding:
 - Issue discussions (for known problems)
 - Examples in /examples directory
 
-**4. WebSearch (verified)**
+**4. Web Search (verified)**
 
 - Community patterns confirmed with official source
 - Multiple credible sources agreeing
 - Recent (include year in search)
 
-**5. WebSearch (unverified)**
+**5. Web Search (unverified)**
 
 - Single blog post
 - Stack Overflow without official verification
@@ -447,11 +470,11 @@ Things that couldn't be fully resolved:
 
 ### Secondary (MEDIUM confidence)
 
-- [WebSearch verified with official source]
+- [Web Search verified with official source]
 
 ### Tertiary (LOW confidence)
 
-- [WebSearch only, marked for validation]
+- [Web Search only, marked for validation]
 
 ## Metadata
 
@@ -548,9 +571,9 @@ Based on phase description, identify what needs investigating:
 
 For each domain, follow tool strategy in order:
 
-1. **Context7 First** - Resolve library, query topics
-2. **Official Docs** - WebFetch for gaps
-3. **WebSearch** - Ecosystem discovery with year
+1. **Context7 First** - use_mcp_tool(context7, resolve-library-id + query-docs)
+2. **Official Docs** - use_mcp_tool(web-search) or browser_action for gaps
+3. **Web Search** - Ecosystem discovery with year
 4. **Verification** - Cross-reference all findings
 
 Document findings as you go with confidence levels.
@@ -668,7 +691,7 @@ Research is complete when:
 - [ ] Don't-hand-roll items listed
 - [ ] Common pitfalls catalogued
 - [ ] Code examples provided
-- [ ] Source hierarchy followed (Context7 → Official → WebSearch)
+- [ ] Source hierarchy followed (Context7 → Official → Web Search)
 - [ ] All findings have confidence levels
 - [ ] RESEARCH.md created in correct format
 - [ ] RESEARCH.md committed to git

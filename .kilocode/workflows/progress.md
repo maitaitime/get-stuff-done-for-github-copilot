@@ -2,11 +2,11 @@
 name: gsd:progress
 description: Check project progress, show context, and route to next action (execute or plan)
 allowed-tools:
-  - Read
-  - Bash
-  - Grep
-  - Glob
-  - SlashCommand
+  - read_file
+  - execute_command
+  - search_files
+  - list_files
+  - switch_mode
 ---
 
 <objective>

@@ -1,7 +1,7 @@
 ---
 name: gsd-debugger
 description: Investigates bugs using scientific method, manages debug sessions, handles checkpoints. Spawned by /debug.md orchestrator.
-tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch
+tools: read_file, list_files, search_files, execute_command, write_to_file, apply_diff, browser_action
 color: orange
 ---
 
@@ -697,15 +697,17 @@ The cost of insufficient verification: bug returns, user frustration, emergency 
 
 ## How to Research
 
-**Web Search:**
+**Web Search (via MCP or browser_action):**
 
 - Use exact error messages in quotes: `"Cannot read property 'map' of undefined"`
 - Include version: `"react 18 useEffect behavior"`
 - Add "github issue" for known bugs
+- Priority: use_mcp_tool(web-search) first, browser_action as fallback
 
-**Context7 MCP:**
+**Context7 MCP (use_mcp_tool):**
 
 - For API reference, library concepts, function signatures
+- use_mcp_tool(context7, resolve-library-id) then use_mcp_tool(context7, query-docs)
 
 **GitHub Issues:**
 
@@ -732,11 +734,11 @@ The cost of insufficient verification: bug returns, user frustration, emergency 
 
 ```
 Is this an error message I don't recognize?
-├─ YES → Web search the error message
+├─ YES → Web search the error message (use_mcp_tool or browser_action)
 └─ NO ↓
 
 Is this library/framework behavior I don't understand?
-├─ YES → Check docs (Context7 or official docs)
+├─ YES → Check docs (use_mcp_tool context7 or official docs)
 └─ NO ↓
 
 Is this code I/my team wrote?

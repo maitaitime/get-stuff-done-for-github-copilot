@@ -2,11 +2,11 @@
 name: gsd:resume-work
 description: Resume work from previous session with full context restoration
 allowed-tools:
-  - Read
-  - Bash
-  - Write
-  - AskUserQuestion
-  - SlashCommand
+  - read_file
+  - execute_command
+  - write_to_file
+  - ask_followup_question
+  - switch_mode
 ---
 
 <objective>

@@ -3,10 +3,10 @@ name: gsd:list-phase-assumptions
 description: Surface KiloCode's assumptions about a phase approach before planning
 argument-hint: "[phase]"
 allowed-tools:
-  - Read
-  - Bash
-  - Grep
-  - Glob
+  - read_file
+  - execute_command
+  - search_files
+  - list_files
 ---
 
 <objective>

@@ -3,12 +3,12 @@ name: gsd:map-codebase
 description: Analyze codebase with parallel mapper agents to produce .gsd/codebase/ documents
 argument-hint: "[optional: specific area to map, e.g., 'api' or 'auth']"
 allowed-tools:
-  - Read
-  - Bash
-  - Glob
-  - Grep
-  - Write
-  - Task
+  - read_file
+  - execute_command
+  - list_files
+  - search_files
+  - write_to_file
+  - new_task
 ---
 
 <objective>

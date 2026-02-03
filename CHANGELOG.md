@@ -6,6 +6,30 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-02-03
+
+### Added
+
+- MCP tool priority system: Context7 → Web Search MCP → browser_action
+- Recommended MCP Servers section in README with installation links
+- Context7 MCP integration with `use_mcp_tool(context7, ...)` syntax
+- Web Search MCP flexibility (Brave Search, Tavily, SearXNG, Perplexity)
+- Tool equivalency table in README (Claude Code → Kilo Code mapping)
+
+### Changed
+
+- Converted all 11 mode rules from Claude Code to Kilo Code tool naming
+- Converted all 22 workflows `allowed-tools` to Kilo Code syntax
+- Updated discovery-phase skill with MCP priority hierarchy
+- Updated research templates with Web Search terminology
+- Replaced `mcp__context7__*` with `use_mcp_tool(context7, ...)` syntax
+- Replaced `WebSearch`/`WebFetch` with `use_mcp_tool(web-search)` → `browser_action` pattern
+
+### Attribution
+
+- [Context7](https://github.com/upstash/context7) by Upstash for documentation MCP
+- [Brave Search API](https://api.search.brave.com) as recommended Web Search MCP example
+
 ## [1.0.0] - 2025-02-02
 
 ### Added

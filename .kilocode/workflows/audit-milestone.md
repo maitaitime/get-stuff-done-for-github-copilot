@@ -3,12 +3,12 @@ name: gsd:audit-milestone
 description: Audit milestone completion against original intent before archiving
 argument-hint: "[version]"
 allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Bash
-  - Task
-  - Write
+  - read_file
+  - list_files
+  - search_files
+  - execute_command
+  - new_task
+  - write_to_file
 ---
 
 <objective>
