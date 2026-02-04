@@ -649,10 +649,10 @@ Options:
 3. **Keep branches** — Leave for manual handling
 ```
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 ```
-AskUserQuestion([
+HumanAgent MCP (HumanAgent_Chat)([
   {
     question: "How should branches be handled?",
     header: "Branches",

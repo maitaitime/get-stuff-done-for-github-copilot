@@ -79,7 +79,7 @@ Quick tasks can run mid-phase - validation only checks ROADMAP.md exists, not ph
 Prompt user interactively for the task description:
 
 ```
-AskUserQuestion(
+HumanAgent MCP (HumanAgent_Chat)(
   header: "Quick Task",
   question: "What do you want to do?",
   followUp: null

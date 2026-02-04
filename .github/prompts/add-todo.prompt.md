@@ -77,7 +77,7 @@ If potential duplicate found:
 1. Read the existing todo
 2. Compare scope
 
-If overlapping, use AskUserQuestion:
+If overlapping, use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Duplicate?"
 - question: "Similar todo exists: [title]. What would you like to do?"

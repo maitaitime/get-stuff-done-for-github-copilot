@@ -83,7 +83,7 @@ Check the results from setup step:
 - If `CODE_FILES` is non-empty OR `HAS_PACKAGE` is "yes"
 - AND `HAS_CODEBASE_MAP` is NOT "yes"
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Existing Code"
 - question: "I detected existing code in this directory. Would you like to map the codebase first?"
@@ -115,7 +115,7 @@ Exit command.
 
 **Open the conversation:**
 
-Ask inline (freeform, NOT AskUserQuestion):
+Ask inline (freeform, NOT HumanAgent MCP (HumanAgent_Chat)):
 
 "What do you want to build?"
 
@@ -123,7 +123,7 @@ Wait for their response. This gives you the context needed to ask intelligent fo
 
 **Follow the thread:**
 
-Based on what they said, ask follow-up questions that dig into their response. Use AskUserQuestion with options that probe what they mentioned — interpretations, clarifications, concrete examples.
+Based on what they said, ask follow-up questions that dig into their response. Use HumanAgent MCP (HumanAgent_Chat) with options that probe what they mentioned — interpretations, clarifications, concrete examples.
 
 Keep following threads. Each answer opens new threads to explore. Ask about:
 
@@ -147,7 +147,7 @@ As you go, mentally check the context checklist from `questioning.md`. If gaps r
 
 **Decision gate:**
 
-When you could write a clear PROJECT.md, use AskUserQuestion:
+When you could write a clear PROJECT.md, use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Ready?"
 - question: "I think I understand what you're after. Ready to create PROJECT.md?"
@@ -415,7 +415,7 @@ Store resolved models for use in Task calls below.
 
 ## Phase 6: Research Decision
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Research"
 - question: "Research the domain ecosystem before defining requirements?"
@@ -721,7 +721,7 @@ For each capability mentioned:
 
 **Scope each category:**
 
-For each category, use AskUserQuestion:
+For each category, use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "[Category name]"
 - question: "Which [category] features are in v1?"
@@ -740,7 +740,7 @@ Track responses:
 
 **Identify gaps:**
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Additions"
 - question: "Any requirements research missed? (Features specific to your vision)"
@@ -911,7 +911,7 @@ Success criteria:
 
 **CRITICAL: Ask for approval before committing:**
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Roadmap"
 - question: "Does this roadmap structure work for you?"

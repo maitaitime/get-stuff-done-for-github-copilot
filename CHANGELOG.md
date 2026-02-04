@@ -6,6 +6,30 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-02-04
+
+### Added
+
+- HumanAgent MCP integration for user interaction during agent workflows
+- HumanAgent MCP tool: `HumanAgent_Chat` (forces Copilot to chat with user before acting)
+- HumanAgent MCP added to MCP Server Support table in README
+- Human category added to Tool Groups by Platform table
+
+### Changed
+
+- Updated tool mapping: `AskUserQuestion`/`ask_followup_question` → HumanAgent MCP (`HumanAgent_Chat`)
+- Previously marked as "N/A (use chat)" now properly mapped to MCP tool
+- Converted all `AskUserQuestion` references to `HumanAgent MCP (HumanAgent_Chat)` in 15 files:
+  - 1 instruction: questioning.instructions.md
+  - 9 prompts: add-todo, check-todos, debug, new-milestone, new-project, quick, settings, update, verify-work
+  - 5 skills: complete-milestone, discovery-phase, discuss-phase, execute-plan, verify-work
+
+### Documentation
+
+- Added HumanAgent MCP to all tool reference tables in README
+- Documented `HumanAgent_Chat` tool for mid-workflow user interaction
+- Link: https://github.com/3DTek-xyz/HumanAgent-MCP
+
 ## [1.0.0] - 2025-02-04
 
 ### Added

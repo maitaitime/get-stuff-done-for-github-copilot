@@ -57,7 +57,7 @@ If $ARGUMENTS provided OR user describes new issue:
 
 ## 2. Gather Symptoms (if new issue)
 
-Use AskUserQuestion for each:
+Use HumanAgent MCP (HumanAgent_Chat) for each:
 
 1. **Expected behavior** - What should happen?
 2. **Actual behavior** - What happens instead?

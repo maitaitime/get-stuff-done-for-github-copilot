@@ -55,7 +55,7 @@ If you've modified any GSD files directly, consider:
 - Or committing your changes before updating
 ```
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - Question: "Proceed with update?"
 - Options:

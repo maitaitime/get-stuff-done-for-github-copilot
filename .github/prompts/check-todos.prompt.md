@@ -119,7 +119,7 @@ If roadmap exists:
 <step name="offer_actions">
 **If todo maps to a roadmap phase:**
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Action"
 - question: "This todo relates to Phase [N]: [name]. What would you like to do?"
@@ -131,7 +131,7 @@ Use AskUserQuestion:
 
 **If no roadmap match:**
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Action"
 - question: "What would you like to do with this todo?"

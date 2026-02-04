@@ -37,10 +37,10 @@ Parse current values (default to `true` if not present):
 
 ## 3. Present Settings
 
-Use AskUserQuestion with current values shown:
+Use HumanAgent MCP (HumanAgent_Chat) with current values shown:
 
 ```
-AskUserQuestion([
+HumanAgent MCP (HumanAgent_Chat)([
   {
     question: "Which model profile for agents?",
     header: "Model",

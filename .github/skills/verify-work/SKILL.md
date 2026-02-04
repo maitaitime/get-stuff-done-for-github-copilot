@@ -216,7 +216,7 @@ Display using checkpoint box format:
 ──────────────────────────────────────────────────────────────
 ```
 
-Wait for user response (plain text, no AskUserQuestion).
+Wait for user response (plain text, no HumanAgent MCP (HumanAgent_Chat)).
 </step>
 
 <step name="process_response">

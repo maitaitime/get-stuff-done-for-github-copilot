@@ -75,9 +75,9 @@ Use these as inspiration, not a checklist. Pick what's relevant to the thread.
 
 </question_types>
 
-<using_askuserquestion>
+<using_HumanAgent MCP (HumanAgent_Chat)>
 
-Use AskUserQuestion to help users think by presenting concrete options to react to.
+Use HumanAgent MCP (HumanAgent_Chat) to help users think by presenting concrete options to react to.
 
 **Good options:**
 
@@ -105,7 +105,7 @@ User mentions "frustrated with current tools"
 - question: "What specifically frustrates you?"
 - options: ["Too many clicks", "Missing features", "Unreliable", "Let me explain"]
 
-</using_askuserquestion>
+</using_HumanAgent MCP (HumanAgent_Chat)>
 
 <context_checklist>
 

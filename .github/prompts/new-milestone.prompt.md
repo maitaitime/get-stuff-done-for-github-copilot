@@ -61,7 +61,7 @@ Milestone name: $ARGUMENTS (optional - will prompt if not provided)
 
 - Present what shipped in last milestone
 - Ask: "What do you want to build next?"
-- Use AskUserQuestion to explore features
+- Use HumanAgent MCP (HumanAgent_Chat) to explore features
 - Probe for priorities, constraints, scope
 
 ## Phase 3: Determine Milestone Version
@@ -145,7 +145,7 @@ Store resolved models for use in Task calls below.
 
 ## Phase 7: Research Decision
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Research"
 - question: "Research the domain ecosystem for new features before defining requirements?"
@@ -443,7 +443,7 @@ For each capability mentioned:
 
 **Scope each category:**
 
-For each category, use AskUserQuestion:
+For each category, use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "[Category name]"
 - question: "Which [category] features are in this milestone?"
@@ -462,7 +462,7 @@ Track responses:
 
 **Identify gaps:**
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Additions"
 - question: "Any requirements research missed? (Features specific to your vision)"
@@ -627,7 +627,7 @@ Success criteria:
 
 **CRITICAL: Ask for approval before committing:**
 
-Use AskUserQuestion:
+Use HumanAgent MCP (HumanAgent_Chat):
 
 - header: "Roadmap"
 - question: "Does this roadmap structure work for you?"

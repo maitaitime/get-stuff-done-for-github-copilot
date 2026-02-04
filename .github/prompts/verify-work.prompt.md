@@ -56,7 +56,7 @@ Phase: $ARGUMENTS (optional)
 
 <anti_patterns>
 
-- Don't use AskUserQuestion for test responses — plain text conversation
+- Don't use HumanAgent MCP (HumanAgent_Chat) for test responses — plain text conversation
 - Don't ask severity — infer from description
 - Don't present full checklist upfront — one test at a time
 - Don't run automated tests — this is manual user validation
