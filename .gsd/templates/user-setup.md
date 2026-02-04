@@ -1,8 +1,8 @@
 # User Setup Template
 
-Template for `.gsd/phases/XX-name/{phase}-USER-SETUP.md` - human-required configuration that KiloCode cannot automate.
+Template for `.gsd/phases/XX-name/{phase}-USER-SETUP.md` - human-required configuration that Copilot cannot automate.
 
-**Purpose:** Document setup tasks that literally require human action - account creation, dashboard configuration, secret retrieval. KiloCode automates everything possible; this file captures only what remains.
+**Purpose:** Document setup tasks that literally require human action - account creation, dashboard configuration, secret retrieval. Copilot automates everything possible; this file captures only what remains.
 
 ---
 
@@ -15,7 +15,7 @@ Template for `.gsd/phases/XX-name/{phase}-USER-SETUP.md` - human-required config
 **Phase:** {phase-name}
 **Status:** Incomplete
 
-Complete these items for the integration to function. KiloCode automated everything possible; these items require human access to external dashboards/accounts.
+Complete these items for the integration to function. Copilot automated everything possible; these items require human access to external dashboards/accounts.
 
 ## Environment Variables
 
@@ -100,9 +100,9 @@ user_setup:
 
 ## The Automation-First Rule
 
-**USER-SETUP.md contains ONLY what KiloCode literally cannot do.**
+**USER-SETUP.md contains ONLY what Copilot literally cannot do.**
 
-| KiloCode CAN Do (not in USER-SETUP) | KiloCode CANNOT Do (→ USER-SETUP)         |
+| Copilot CAN Do (not in USER-SETUP) | Copilot CANNOT Do (→ USER-SETUP)         |
 | ----------------------------------- | ----------------------------------------- |
 | `npm install stripe`                | Create Stripe account                     |
 | Write webhook handler code          | Get API keys from dashboard               |
@@ -111,10 +111,10 @@ user_setup:
 | Configure package.json              | Access external service dashboards        |
 | Write any code                      | Retrieve secrets from third-party systems |
 
-**The test:** "Does this require a human in a browser, accessing an account KiloCode doesn't have credentials for?"
+**The test:** "Does this require a human in a browser, accessing an account Copilot doesn't have credentials for?"
 
 - Yes → USER-SETUP.md
-- No → KiloCode does it automatically
+- No → Copilot does it automatically
 
 ---
 
@@ -315,7 +315,7 @@ curl -X POST http://localhost:3000/api/test-email \
 
 ## Guidelines
 
-**Never include:** Actual secret values. Steps KiloCode can automate (package installs, code changes).
+**Never include:** Actual secret values. Steps Copilot can automate (package installs, code changes).
 
 **Naming:** `{phase}-USER-SETUP.md` matches the phase number pattern.
 **Status tracking:** User marks checkboxes and updates status line when complete.

@@ -74,8 +74,8 @@ files_changed: []
 **Current Focus:**
 
 - OVERWRITE entirely on each update
-- Always reflects what KiloCode is doing RIGHT NOW
-- If KiloCode reads this after /clear, it knows exactly where to resume
+- Always reflects what Copilot is doing RIGHT NOW
+- If Copilot reads this after /clear, it knows exactly where to resume
 - Fields: hypothesis, test, expecting, next_action
 
 **Symptoms:**
@@ -152,7 +152,7 @@ files_changed: []
 
 <resume_behavior>
 
-When KiloCode reads this file after /clear:
+When Copilot reads this file after /clear:
 
 1. Parse frontmatter → know status
 2. Read Current Focus → know exactly what was happening
@@ -160,7 +160,7 @@ When KiloCode reads this file after /clear:
 4. Read Evidence → know what's been learned
 5. Continue from next_action
 
-The file IS the debugging brain. KiloCode should be able to resume perfectly from any interruption point.
+The file IS the debugging brain. Copilot should be able to resume perfectly from any interruption point.
 
 </resume_behavior>
 

@@ -149,7 +149,7 @@ get-stuff-done/
 - Subdirectories: None
 
 **commands/gsd/**
-- Purpose: Slash command definitions for KiloCode Code
+- Purpose: Slash command definitions for Copilot Code
 - Contains: *.md files (one per command)
 - Key files: new-project.md, plan-phase.md, execute-plan.md
 - Subdirectories: None (flat structure)
@@ -189,14 +189,14 @@ get-stuff-done/
 
 **Documentation:**
 - `README.md` - User-facing installation and usage guide
-- `KiloCode.md` - Instructions for KiloCode Code when working in this repo
+- `Copilot.md` - Instructions for Copilot Code when working in this repo
 
 ## Naming Conventions
 
 **Files:**
 - kebab-case.md: Markdown documents
 - kebab-case.js: JavaScript source files
-- UPPERCASE.md: Important project files (README, KiloCode, CHANGELOG)
+- UPPERCASE.md: Important project files (README, Copilot, CHANGELOG)
 
 **Directories:**
 - kebab-case: All directories
@@ -219,7 +219,7 @@ get-stuff-done/
 
 **New Workflow:**
 - Implementation: `get-stuff-done/workflows/{name}.md`
-- Usage: Reference from command with `@~/.kilocode/skills/{name}/SKILL.md`
+- Usage: Reference from command with `@~/.Copilot/skills/{name}/SKILL.md`
 
 **New Reference Document:**
 - Implementation: `get-stuff-done/references/{name}.md`
@@ -232,12 +232,12 @@ get-stuff-done/
 ## Special Directories
 
 **get-stuff-done/**
-- Purpose: Resources installed to ~/.KiloCode/
+- Purpose: Resources installed to ~/.Copilot/
 - Source: Copied by bin/install.js during installation
 - Committed: Yes (source of truth)
 
 **commands/**
-- Purpose: Slash commands installed to ~/.KiloCode/commands/
+- Purpose: Slash commands installed to ~/.Copilot/commands/
 - Source: Copied by bin/install.js during installation
 - Committed: Yes (source of truth)
 

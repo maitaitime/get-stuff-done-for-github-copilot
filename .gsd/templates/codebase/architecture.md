@@ -266,7 +266,7 @@ _Update when major patterns change_
 - Implementation details of specific features
 
 **File paths ARE welcome:**
-Include file paths as concrete examples of abstractions. Use backtick formatting: `src/services/user.ts`. This makes the architecture document actionable for KiloCode when planning.
+Include file paths as concrete examples of abstractions. Use backtick formatting: `src/services/user.ts`. This makes the architecture document actionable for Copilot when planning.
 
 **When filling this template:**
 

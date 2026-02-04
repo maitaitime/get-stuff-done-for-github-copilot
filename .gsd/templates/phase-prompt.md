@@ -20,7 +20,7 @@ wave: N # Execution wave (1, 2, 3...). Pre-computed at plan time.
 depends_on: [] # Plan IDs this plan requires (e.g., ["01-01"]).
 files_modified: [] # Files this plan modifies.
 autonomous: true # false if plan has checkpoints requiring user interaction
-user_setup: [] # Human-required setup KiloCode cannot automate (see below)
+user_setup: [] # Human-required setup Copilot cannot automate (see below)
 
 # Goal-backward verification (derived during planning, verified after execution)
 must_haves:
@@ -37,10 +37,10 @@ Output: [What artifacts will be created]
 </objective>
 
 <execution_context>
-@~/.kilocode/skills/execute-plan/SKILL.md
-@~/.KiloCode/get-stuff-done/templates/summary.md
+@~/.Copilot/skills/execute-plan/SKILL.md
+@~/.Copilot/get-stuff-done/templates/summary.md
 [If plan contains checkpoint tasks (type="checkpoint:*"), add:]
-@~/.kilocode/rules/checkpoints.md
+@~/.Copilot/rules/checkpoints.md
 </execution_context>
 
 <context>
@@ -78,8 +78,8 @@ Output: [What artifacts will be created]
   <done>[Acceptance criteria]</done>
 </task>
 
-<!-- For checkpoint task examples and patterns, see @~/.kilocode/rules/checkpoints.md -->
-<!-- Key rule: KiloCode starts dev server BEFORE human-verify checkpoints. User only visits URLs. -->
+<!-- For checkpoint task examples and patterns, see @~/.Copilot/rules/checkpoints.md -->
+<!-- Key rule: Copilot starts dev server BEFORE human-verify checkpoints. User only visits URLs. -->
 
 <task type="checkpoint:decision" gate="blocking">
   <decision>[What needs deciding]</decision>
@@ -92,7 +92,7 @@ Output: [What artifacts will be created]
 </task>
 
 <task type="checkpoint:human-verify" gate="blocking">
-  <what-built>[What KiloCode built] - server running at [URL]</what-built>
+  <what-built>[What Copilot built] - server running at [URL]</what-built>
   <how-to-verify>Visit [URL] and verify: [visual checks only, NO CLI commands]</how-to-verify>
   <resume-signal>Type "approved" or describe issues</resume-signal>
 </task>
@@ -278,7 +278,7 @@ TDD features get dedicated plans with `type: tdd`.
 → Yes: Create a TDD plan
 → No: Standard task in standard plan
 
-See `~/.kilocode/rules/tdd.md` for TDD plan structure.
+See `~/.Copilot/rules/tdd.md` for TDD plan structure.
 
 ---
 
@@ -286,7 +286,7 @@ See `~/.kilocode/rules/tdd.md` for TDD plan structure.
 
 | Type                      | Use For                                  | Autonomy                        |
 | ------------------------- | ---------------------------------------- | ------------------------------- |
-| `auto`                    | Everything KiloCode can do independently | Fully autonomous                |
+| `auto`                    | Everything Copilot can do independently | Fully autonomous                |
 | `checkpoint:human-verify` | Visual/functional verification           | Pauses, returns to orchestrator |
 | `checkpoint:decision`     | Implementation choices                   | Pauses, returns to orchestrator |
 | `checkpoint:human-action` | Truly unavoidable manual steps (rare)    | Pauses, returns to orchestrator |
@@ -389,9 +389,9 @@ Output: Working dashboard component.
 </objective>
 
 <execution_context>
-@~/.kilocode/skills/execute-plan/SKILL.md
-@~/.KiloCode/get-stuff-done/templates/summary.md
-@~/.kilocode/rules/checkpoints.md
+@~/.Copilot/skills/execute-plan/SKILL.md
+@~/.Copilot/get-stuff-done/templates/summary.md
+@~/.Copilot/rules/checkpoints.md
 </execution_context>
 
 <context>
@@ -410,7 +410,7 @@ Output: Working dashboard component.
   <done>Dashboard renders without errors</done>
 </task>
 
-<!-- Checkpoint pattern: KiloCode starts server, user visits URL. See checkpoints.md for full patterns. -->
+<!-- Checkpoint pattern: Copilot starts server, user visits URL. See checkpoints.md for full patterns. -->
 <task type="auto">
   <name>Start dev server</name>
   <action>Run `npm run dev` in background, wait for ready</action>
@@ -480,7 +480,7 @@ files_modified: [...]
 
 ## Guidelines
 
-- Always use XML structure for KiloCode parsing
+- Always use XML structure for Copilot parsing
 - Include `wave`, `depends_on`, `files_modified`, `autonomous` in every plan
 - Prefer vertical slices over horizontal layers
 - Only reference prior SUMMARYs when genuinely needed
@@ -510,17 +510,17 @@ user_setup:
       - "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
 ```
 
-**The automation-first rule:** `user_setup` contains ONLY what KiloCode literally cannot do:
+**The automation-first rule:** `user_setup` contains ONLY what Copilot literally cannot do:
 
 - Account creation (requires human signup)
 - Secret retrieval (requires dashboard access)
 - Dashboard configuration (requires human in browser)
 
-**NOT included:** Package installs, code changes, file creation, CLI commands KiloCode can run.
+**NOT included:** Package installs, code changes, file creation, CLI commands Copilot can run.
 
 **Result:** Execute-plan generates `{phase}-USER-SETUP.md` with checklist for the user.
 
-See `~/.KiloCode/get-stuff-done/templates/user-setup.md` for full schema and examples
+See `~/.Copilot/get-stuff-done/templates/user-setup.md` for full schema and examples
 
 ---
 
@@ -587,4 +587,4 @@ Task completion ≠ Goal achievement. A task "create chat component" can complet
 5. Gaps found → fix plans created → execute → re-verify
 6. All must_haves pass → phase complete
 
-See `~/.kilocode/skills/verify-phase/SKILL.md` for verification logic.
+See `~/.Copilot/skills/verify-phase/SKILL.md` for verification logic.

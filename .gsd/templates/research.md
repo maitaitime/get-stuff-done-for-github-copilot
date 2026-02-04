@@ -2,7 +2,7 @@
 
 Template for `.gsd/phases/XX-name/{phase}-RESEARCH.md` - comprehensive ecosystem research before planning.
 
-**Purpose:** Document what KiloCode needs to know to implement a phase well - not just "which library" but "how do experts build this."
+**Purpose:** Document what Copilot needs to know to implement a phase well - not just "which library" but "how do experts build this."
 
 ---
 
@@ -563,7 +563,7 @@ _Ready for planning: yes_
 
 **When to create:**
 - Before planning phases in niche/complex domains
-- When KiloCode's training data is likely stale or sparse
+- When Copilot's training data is likely stale or sparse
 - When "how do experts do this" matters more than "which library"
 
 **Structure:**

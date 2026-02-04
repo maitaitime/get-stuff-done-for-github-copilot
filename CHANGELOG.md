@@ -1,110 +1,62 @@
 # Changelog
 
-All notable changes to GSD for Kilo Code will be documented in this file.
+All notable changes to GSD for GitHub Copilot will be documented in this file.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-## [1.3.0] - 2025-02-03
+## [1.0.0] - 2025-02-04
 
 ### Added
 
-- Exa MCP integration as equal priority to Brave Search for Web Search MCP
-- Exa tools documentation: `web_search_exa`, `get_code_context_exa`, `company_research_exa`, `deep_search_exa`, `crawling_exa`
-- Comparison table in README for choosing between Exa and Brave Search
-- Installation instructions for Exa MCP (npm package and hosted URL)
-
-### Changed
-
-- Updated discovery-phase skill with Exa MCP examples and tool recommendations
-- Enhanced source_hierarchy to show Exa and Brave as equal priority options
-- Updated Level 2 (Standard) and Level 3 (Deep Dive) discovery workflows with Exa tool examples
-- README Web Search MCP section reorganized with comparison table
-
-### Documentation
-
-- Added Exa MCP features table with use case recommendations
-- Documented Exa-specific tools: semantic search, code context, company research, deep search
-- Added note clarifying Exa and Brave are equal priority — choose based on use case
-
-## [1.2.0] - 2025-02-03
-
-### Added
-
-- Codebase Indexing Tools integration (`list_code_definition_names`, `codebase_search`)
-- Tool priority documentation for codebase exploration in README
-- Tool strategy sections in 7 mode rules with usage guidance
-- Semantic code search capability for debugging, verification, and integration checking
-
-### Changed
-
-- Updated 7 mode rules to include `list_code_definition_names` and `codebase_search`:
-  - gsd-codebase-mapper, gsd-debugger, gsd-executor, gsd-integration-checker
-  - gsd-verifier, gsd-plan-checker, gsd-roadmapper
-- Enhanced gsd-codebase-mapper with detailed tool priority table and usage examples
-- Enhanced gsd-debugger with codebase search guidance for finding related code
-- Enhanced gsd-verifier with semantic search for goal verification
-- Enhanced gsd-integration-checker with cross-phase connection discovery
-- Enhanced gsd-executor with pattern-finding before implementation
-- Enhanced gsd-plan-checker with feasibility verification against codebase
-
-### Documentation
-
-- Added 🔍 Codebase Indexing Tools section to README
-- Documented tool priority: `list_code_definition_names` → `codebase_search` → `search_files` → `read_file`
-- Added note about Codebase Indexing configuration requirements (Qdrant + embedding provider)
-
-## [1.1.0] - 2025-02-03
-
-### Added
-
-- MCP tool priority system: Context7 → Web Search MCP → browser_action
-- Recommended MCP Servers section in README with installation links
-- Context7 MCP integration with `use_mcp_tool(context7, ...)` syntax
-- Web Search MCP flexibility (Brave Search, Tavily, SearXNG, Perplexity)
-- Tool equivalency table in README (Claude Code → Kilo Code mapping)
-
-### Changed
-
-- Converted all 11 mode rules from Claude Code to Kilo Code tool naming
-- Converted all 22 workflows `allowed-tools` to Kilo Code syntax
-- Updated discovery-phase skill with MCP priority hierarchy
-- Updated research templates with Web Search terminology
-- Replaced `mcp__context7__*` with `use_mcp_tool(context7, ...)` syntax
-- Replaced `WebSearch`/`WebFetch` with `use_mcp_tool(web-search)` → `browser_action` pattern
-
-### Attribution
-
-- [Context7](https://github.com/upstash/context7) by Upstash for documentation MCP
-- [Brave Search API](https://api.search.brave.com) as recommended Web Search MCP example
-
-## [1.0.0] - 2025-02-02
-
-### Added
-
-- Initial Kilo Code adaptation of [glittercowboy/get-shit-done](https://github.com/glittercowboy/get-shit-done)
-- 12 skills with proper YAML frontmatter for Kilo Code discovery
-  - complete-milestone, diagnose-issues, discovery-phase, discuss-phase
-  - execute-phase, execute-plan, list-phase-assumptions, map-codebase
-  - resume-project, transition, verify-phase, verify-work
-- 11 custom modes via `.kilocodemodes` for specialized agent behaviors
+- Initial GitHub Copilot port of [get-stuff-done-for-kilocode](https://github.com/punal100/get-stuff-done-for-kilocode) by [punal100](https://github.com/punal100)
+- 27 Prompt Files with Copilot-compatible YAML frontmatter (`.github/prompts/*.prompt.md`)
+  - Discovery, planning, execution, verification, and utility prompts
+- 11 Custom Agents for specialized GSD behaviors (`.github/agents/*.agent.md`)
   - gsd-codebase-mapper, gsd-debugger, gsd-executor, gsd-integration-checker
   - gsd-phase-researcher, gsd-plan-checker, gsd-planner, gsd-project-researcher
   - gsd-research-synthesizer, gsd-roadmapper, gsd-verifier
-- Mode-specific rules in `.kilocode/rules-{mode-slug}/` directories
-- Workflow definitions in `.kilocode/workflows/`
-- Project templates in `.gsd/templates/`
+- 12 Agent Skills with detailed instruction sets (`.github/skills/*/SKILL.md`)
+  - complete-milestone, diagnose-issues, discovery-phase, discuss-phase
+  - execute-phase, execute-plan, list-phase-assumptions, map-codebase
+  - resume-project, transition, verify-phase, verify-work
+- 9 Instructions for workflow guidelines (`.github/instructions/*.instructions.md`)
+  - checkpoints, continuation-format, git-integration, model-profiles
+  - planning-config, questioning, tdd, ui-brand, verification-patterns
+- 18 Project templates in `.gsd/templates/` for context engineering documents
+- Full 3-way tool mapping documentation (Claude Code → Kilo Code → GitHub Copilot)
 
 ### Changed
 
-- Restructured from Claude Code format to Kilo Code format
-- Renamed `commands/` to `.kilocode/skills/`
-- Renamed `agents/` to `.kilocode/rules-{mode-slug}/`
-- Renamed `workflows/` to `.kilocode/workflows/`
-- Renamed `templates/` to `.gsd/templates/`
-- Removed npm installer and hooks (not needed for Kilo Code)
+- Restructured from Kilo Code format to GitHub Copilot format
+- Renamed `.kilocode/skills/` to `.github/skills/`
+- Renamed `.kilocode/rules-{mode-slug}/` to `.github/agents/{agent}.agent.md`
+- Renamed `.kilocode/workflows/` to `.github/prompts/`
+- Renamed `.kilocode/rules/` to `.github/instructions/`
+- Converted all tool references from Kilo Code to GitHub Copilot naming:
+  - `read_file` → `readFile`
+  - `write_to_file` → `editFiles`, `createFile`
+  - `apply_diff` → `editFiles`
+  - `execute_command` → `runInTerminal`
+  - `search_files` → `textSearch`
+  - `list_files` → `listDirectory`, `fileSearch`
+  - `new_task` → `runSubagent`
+  - `codebase_search` → `codebase`, `usages`
+- Updated all 47 `.github/**/*.md` files with Copilot tool names and relative paths
+- Updated all 18 `.gsd/templates/*.md` files with Copilot references
+- Rewrote `update.prompt.md` from npm/npx workflow to git pull workflow
+- Removed Kilo Code-specific files (`.kilocodemodes`, `.kilocode/` directory)
+
+### Documentation
+
+- Rewrote README.md with full attribution chain (Claude Code → Kilo Code → Copilot)
+- Added 3-way structure comparison table (Claude Code | Kilo Code | GitHub Copilot)
+- Added 4-column tool mapping table with all three platforms
+- Added tool groups comparison by platform
+- Added codebase exploration tools documentation
+- Added MCP server support section
 
 ### Attribution
 
-This project is a Kilo Code adaptation of the original [Get Shit Done](https://github.com/glittercowboy/get-shit-done) system created by [@glittercowboy](https://github.com/glittercowboy). All credit for the core GSD methodology, workflows, and agent designs belongs to the original author.
+This project is a GitHub Copilot port of [GSD for Kilo Code](https://github.com/punal100/get-stuff-done-for-kilocode) by [@punal100](https://github.com/punal100), which itself is an adaptation of [Get Shit Done](https://github.com/glittercowboy/get-shit-done) by [@glittercowboy](https://github.com/glittercowboy). All credit for the core GSD methodology, workflows, and agent designs belongs to the original authors.

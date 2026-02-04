@@ -44,9 +44,9 @@ Template for `.gsd/phases/XX-name/{phase}-CONTEXT.md` - captures implementation 
 
 - [Specific decision made]
 
-### KiloCode's Discretion
+### Copilot's Discretion
 
-[Areas where user explicitly said "you decide" — KiloCode has flexibility here during planning/implementation]
+[Areas where user explicitly said "you decide" — Copilot has flexibility here during planning/implementation]
 
 </decisions>
 
@@ -111,7 +111,7 @@ Display posts from followed users in a scrollable feed. Users can view posts and
 - Friendly illustration + "Follow people to see posts here"
 - Suggest 3-5 accounts to follow based on interests
 
-### KiloCode's Discretion
+### Copilot's Discretion
 
 - Loading skeleton design
 - Exact spacing and typography
@@ -177,7 +177,7 @@ CLI command to backup database to local file or S3. Supports full and incrementa
 - --no-retry flag to fail fast
 - Partial backups are deleted on failure (no corrupt files)
 
-### KiloCode's Discretion
+### Copilot's Discretion
 
 - Exact progress bar implementation
 - Compression algorithm choice
@@ -243,7 +243,7 @@ Organize existing photo library into structured folders. Handle duplicates and a
 - Preserve original filename as suffix for searchability
 - Handle name collisions with incrementing suffix
 
-### KiloCode's Discretion
+### Copilot's Discretion
 
 - Exact clustering algorithm
 - How to handle photos with no EXIF data

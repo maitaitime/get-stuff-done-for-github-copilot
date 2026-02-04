@@ -192,6 +192,6 @@ See: .gsd/PROJECT.md (updated [date])
 **Current focus:** [Current phase name]
 ```
 
-This ensures KiloCode reads current PROJECT.md context.
+This ensures Copilot reads current PROJECT.md context.
 
 </state_reference>

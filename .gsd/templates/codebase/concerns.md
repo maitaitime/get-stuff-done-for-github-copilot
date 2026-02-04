@@ -339,7 +339,7 @@ _Update as issues are fixed or new ones discovered_
 - Estimating risk of changes
 - Understanding where to be careful
 - Prioritizing improvements
-- Onboarding new KiloCode contexts
+- Onboarding new Copilot contexts
 - Planning refactoring work
 
 **How this gets populated:**

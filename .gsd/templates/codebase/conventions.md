@@ -2,7 +2,7 @@
 
 Template for `.gsd/codebase/CONVENTIONS.md` - captures coding style and patterns.
 
-**Purpose:** Document how code is written in this codebase. Prescriptive guide for KiloCode to match existing style.
+**Purpose:** Document how code is written in this codebase. Prescriptive guide for Copilot to match existing style.
 
 ---
 

@@ -159,7 +159,7 @@ None — all verifiable items checked programmatically.
 ---
 
 _Verified: {timestamp}_
-_Verifier: KiloCode (subagent)_
+_Verifier: Copilot (subagent)_
 ```
 
 ---
@@ -330,5 +330,5 @@ None needed until automated gaps are fixed.
 ---
 
 _Verified: 2025-01-15T14:30:00Z_
-_Verifier: KiloCode (subagent)_
+_Verifier: Copilot (subagent)_
 ```

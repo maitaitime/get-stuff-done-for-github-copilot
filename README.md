@@ -1,10 +1,10 @@
 <div align="center">
 
-# GSD for Kilo Code
+# GSD for GitHub Copilot
 
-**A Kilo Code port of the incredible [Get Shit Done](https://github.com/glittercowboy/get-shit-done) system by [glittercowboy](https://github.com/glittercowboy).**
+**A GitHub Copilot port of the incredible [Get Shit Done](https://github.com/glittercowboy/get-shit-done) system by [glittercowboy](https://github.com/glittercowboy), based on the [Kilo Code fork](https://github.com/punal100/get-stuff-done-for-kilocode) by [punal100](https://github.com/punal100).**
 
-This project adapts GSD's powerful context engineering and spec-driven development workflow to work natively with [Kilo Code](https://kilo.ai) using Skills and Custom Modes.
+This project adapts GSD's powerful context engineering and spec-driven development workflow to work natively with [GitHub Copilot](https://github.com/features/copilot) using Custom Agents, Prompt Files, and Agent Skills.
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
@@ -14,7 +14,7 @@ This project adapts GSD's powerful context engineering and spec-driven developme
 
 ## 🙏 Credits & Attribution
 
-> **This is a port, not an original work.**
+> **This is a port of a port, not an original work.**
 
 All credit for the GSD system, methodology, and workflow design goes to:
 
@@ -30,68 +30,82 @@ The original GSD is a brilliant meta-prompting and context engineering system fo
 
 **If you're using Claude Code, use the original:** https://github.com/glittercowboy/get-shit-done
 
+### **[GSD for Kilo Code](https://github.com/punal100/get-stuff-done-for-kilocode)** by **[punal100](https://github.com/punal100)**
+
+This GitHub Copilot port is based on the Kilo Code adaptation of GSD. The Kilo Code fork adapted GSD from Claude Code to Kilo Code, providing:
+
+- Custom Modes and Skills structure
+- Tool name conversions for Kilo Code
+- MCP server integration patterns
+- Codebase indexing tool usage
+
+**If you're using Kilo Code, use the Kilo Code fork:** https://github.com/punal100/get-stuff-done-for-kilocode
+
 **Join the GSD community:** [Discord](https://discord.gg/5JJgD5svVS)
 
 ---
 
 ## What This Port Does
 
-This repository adapts GSD for **Kilo Code** by converting the system to use:
+This repository adapts GSD for **GitHub Copilot** using VS Code's customization features:
 
-| Original (Claude Code)             | This Port (Kilo Code)              |
-| ---------------------------------- | ---------------------------------- |
-| Slash commands (`/new-project.md`) | Workflows (`.kilocode/workflows/`) |
-| Agent prompts in `agents/`         | Custom Modes (`.kilocodemodes`)    |
-| Claude Code specific paths         | Kilo Code conventions              |
+| Original (Claude Code)             | Kilo Code Fork                     | This Port (GitHub Copilot)                              |
+| ---------------------------------- | ---------------------------------- | ------------------------------------------------------- |
+| Slash commands (`/new-project.md`) | Workflows (`.kilocode/workflows/`) | Prompt Files (`.github/prompts/*.prompt.md`)            |
+| Agent prompts in `agents/`         | Custom Modes (`.kilocodemodes`)    | Custom Agents (`.github/agents/*.agent.md`)             |
+| Claude Code specific paths         | Kilo Code conventions              | GitHub Copilot conventions                              |
+| Skills                             | Skills (`.kilocode/skills/`)       | Agent Skills (`.github/skills/*/SKILL.md`)              |
+| Rules                              | Rules (`.kilocode/rules/`)         | Instructions (`.github/instructions/*.instructions.md`) |
 
-### Tool Name Equivalency
+### Tool Name Mapping
 
-Claude Code and Kilo Code use different tool naming conventions. This port uses Kilo Code tool names:
+The full tool chain from Claude Code → Kilo Code → GitHub Copilot:
 
-| Claude Code Tool         | Kilo Code Tool                    | Description                                                                |
-| ------------------------ | --------------------------------- | -------------------------------------------------------------------------- |
-| `Read`                   | `read_file`                       | Read file contents                                                         |
-| `Write`                  | `write_to_file`                   | Create or overwrite files                                                  |
-| `Edit`                   | `apply_diff`                      | Make surgical changes to files                                             |
-| `Bash`                   | `execute_command`                 | Run terminal commands                                                      |
-| `Grep`                   | `search_files`                    | Regex search across files                                                  |
-| `Glob`                   | `list_files`                      | List directory contents                                                    |
-| `Task`                   | `new_task`                        | Spawn subtasks/subagents                                                   |
-| `AskUserQuestion`        | `ask_followup_question`           | Get user input                                                             |
-| `TodoWrite`              | `update_todo_list`                | Track task progress                                                        |
-| `WebSearch` / `WebFetch` | `use_mcp_tool` → `browser_action` | Documentation & web search (see [MCP Priority](#-recommended-mcp-servers)) |
-| `SlashCommand`           | `switch_mode`                     | Change modes                                                               |
-| `mcp__*`                 | `use_mcp_tool`                    | MCP server tools                                                           |
+| Claude Code Tool         | Kilo Code Tool                    | GitHub Copilot Tool           | Description                    |
+| ------------------------ | --------------------------------- | ----------------------------- | ------------------------------ |
+| `Read`                   | `read_file`                       | `readFile`                    | Read file contents             |
+| `Write`                  | `write_to_file`                   | `editFiles`, `createFile`     | Create or overwrite files      |
+| `Edit`                   | `apply_diff`                      | `editFiles`                   | Make surgical changes to files |
+| `Bash`                   | `execute_command`                 | `runInTerminal`               | Run terminal commands          |
+| `Grep`                   | `search_files`                    | `textSearch`                  | Regex search across files      |
+| `Glob`                   | `list_files`                      | `listDirectory`, `fileSearch` | List directory contents        |
+| `Task`                   | `new_task`                        | `runSubagent`                 | Spawn subtasks/subagents       |
+| `AskUserQuestion`        | `ask_followup_question`           | N/A (use chat)                | Get user input                 |
+| `TodoWrite`              | `update_todo_list`                | `todos`                       | Track task progress            |
+| `WebSearch` / `WebFetch` | `use_mcp_tool` → `browser_action` | `fetch`                       | Web access                     |
+| `SlashCommand`           | `switch_mode`                     | N/A (use agents)              | Change modes                   |
+| N/A                      | `list_code_definition_names`      | `codebase`                    | Semantic code search           |
+| N/A                      | `codebase_search`                 | `codebase`, `usages`          | Find code by concept           |
+| `mcp__*`                 | `use_mcp_tool`                    | MCP tools                     | MCP server tools               |
 
-**Tool Groups (for Custom Modes):**
+**Tool Groups by Platform:**
 
-- `read` — `read_file`, `search_files`, `list_files`, `list_code_definition_names`, `codebase_search`
-- `edit` — `apply_diff`, `write_to_file`, `delete_file`
-- `browser` — `browser_action`
-- `command` — `execute_command`
-- `mcp` — `use_mcp_tool`, `access_mcp_resource`
+| Category | Kilo Code                                                                                  | GitHub Copilot                                                                |
+| -------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| Read     | `read_file`, `search_files`, `list_files`, `list_code_definition_names`, `codebase_search` | `readFile`, `listDirectory`, `fileSearch`, `textSearch`, `codebase`, `usages` |
+| Edit     | `apply_diff`, `write_to_file`, `delete_file`                                               | `editFiles`, `createFile`, `createDirectory`                                  |
+| Terminal | `execute_command`                                                                          | `runInTerminal`, `terminalLastCommand`, `getTerminalOutput`, `runTask`        |
+| Web      | `browser_action`, `use_mcp_tool`                                                           | `fetch`, `openSimpleBrowser`                                                  |
+| MCP      | `use_mcp_tool`, `access_mcp_resource`                                                      | MCP server tools                                                              |
 
-For full tool documentation, see [Kilo Code Tools](https://kilo.ai/docs/automate/tools).
+For full tool documentation:
 
-### 🔍 Codebase Indexing Tools
+- **Kilo Code:** [Kilo Code Tools](https://kilo.ai/docs/automate/tools)
+- **GitHub Copilot:** [VS Code Copilot Chat Tools Reference](https://code.visualstudio.com/docs/copilot/reference/copilot-vscode-features#_chat-tools)
 
-GSD modes leverage Kilo Code's advanced codebase indexing tools for efficient code exploration:
+### 🔍 Codebase Exploration Tools
 
-| Tool                         | Purpose                         | When to Use                                                                  |
-| ---------------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
-| `list_code_definition_names` | Get structural overview of code | Understanding classes, functions, interfaces without reading full files      |
-| `codebase_search`            | Semantic code search            | Finding related code by concept, locating implementations across the project |
+GSD agents leverage GitHub Copilot's codebase tools for efficient code exploration:
 
-**Tool Priority for Codebase Exploration:**
+| Tool         | Purpose                | When to Use                                                     |
+| ------------ | ---------------------- | --------------------------------------------------------------- |
+| `codebase`   | Semantic code search   | Finding related code by concept, locating implementations       |
+| `usages`     | Find symbol references | Understanding how functions/classes are used across the project |
+| `textSearch` | Regex/text search      | Finding exact patterns when you know what to search for         |
 
-1. **`list_code_definition_names`** — Get code structure overview first
-2. **`codebase_search`** — Find related code semantically (requires [Codebase Indexing](https://kilo.ai/docs/features/codebase-indexing))
-3. **`search_files`** — Find exact text patterns when you know what to search for
-4. **`read_file`** — Deep-dive into specific files after locating them
+**Agents Using Codebase Tools:**
 
-**Modes Using Codebase Indexing:**
-
-| Mode                      | Usage                                                             |
+| Agent                     | Usage                                                             |
 | ------------------------- | ----------------------------------------------------------------- |
 | `gsd-codebase-mapper`     | Primary use — maps architecture, structure, conventions, concerns |
 | `gsd-debugger`            | Finds related code when investigating bugs                        |
@@ -101,75 +115,24 @@ GSD modes leverage Kilo Code's advanced codebase indexing tools for efficient co
 | `gsd-plan-checker`        | Verifies plan feasibility against existing codebase               |
 | `gsd-roadmapper`          | Understands brownfield codebases before planning                  |
 
-> **Note:** `codebase_search` requires [Codebase Indexing](https://kilo.ai/docs/features/codebase-indexing) to be configured with an embedding provider (OpenAI API or Ollama) and Qdrant vector database. The tool gracefully degrades to `search_files` if indexing is unavailable.
+### 🔌 MCP Server Support
 
-### 🔌 Recommended MCP Servers
+GitHub Copilot supports MCP (Model Context Protocol) servers for extended capabilities. GSD workflows can leverage:
 
-GSD workflows that need documentation or web search use this **priority order**:
+| MCP Server   | Tools                                    | Use Case              |
+| ------------ | ---------------------------------------- | --------------------- |
+| Context7     | `resolve-library-id`, `query-docs`       | Library documentation |
+| Exa          | `web_search_exa`, `get_code_context_exa` | Code search, research |
+| Brave Search | `brave_web_search`                       | General web search    |
 
-| Priority | Tool                                    | Purpose                          | When to Use                                                       |
-| -------- | --------------------------------------- | -------------------------------- | ----------------------------------------------------------------- |
-| 1️⃣       | **Context7 MCP**                        | Up-to-date library documentation | First choice for API docs, code examples, library usage           |
-| 2️⃣       | **Web Search MCP** (e.g., Brave Search) | Real-time web search             | When Context7 doesn't have the library or need broader search     |
-| 3️⃣       | `browser_action`                        | Full browser automation          | Fallback when MCPs unavailable or need to interact with web pages |
-
-#### Context7 MCP
-
-[Context7](https://github.com/upstash/context7) by **Upstash** provides up-to-date, version-specific documentation directly to your LLM. No more hallucinated APIs or outdated code examples.
-
-**Available Tools:**
-
-- `resolve-library-id` — Find Context7 library IDs
-- `query-docs` — Get documentation for a specific library
-
-**Installation:** See [Context7 Installation Guide](https://context7.com/docs/resources/all-clients)
-
-**Free API Key:** [context7.com/dashboard](https://context7.com/dashboard)
-
-#### Web Search MCP
-
-For real-time web search, you can use **any** web search MCP server. **Recommended options:**
-
-| MCP Server                                           | Strength                             | Best For                                     |
-| ---------------------------------------------------- | ------------------------------------ | -------------------------------------------- |
-| **[Exa MCP](https://exa.ai/docs/reference/exa-mcp)** | AI-native semantic search            | Code search, company research, deep research |
-| **[Brave Search MCP](https://api.search.brave.com)** | Privacy-first with independent index | General web queries, news, local search      |
-
-**Other options:** Tavily (AI-optimized), SearXNG (self-hosted), Perplexity (AI-powered)
-
----
-
-**Exa MCP Features:**
-
-- `web_search_exa` — Search the web and get clean, ready-to-use content
-- `get_code_context_exa` — Find code examples from GitHub, Stack Overflow, and docs
-- `company_research_exa` — Research companies by crawling their websites
-- `deep_search_exa` — Deep search with automatic query expansion (off by default)
-- `crawling_exa` — Get full content from a specific URL (off by default)
-
-**Installation:** `npx -y exa-mcp-server` or use hosted: `https://mcp.exa.ai/mcp`
-
-**Free API Key:** [dashboard.exa.ai/api-keys](https://dashboard.exa.ai/api-keys)
-
----
-
-**Brave Search Features:**
-
-- `brave_web_search` — General web queries
-- `brave_local_search` — Local business search
-- `brave_news_search` — News articles
-
-**Free API Key:** [api.search.brave.com/app/keys](https://api.search.brave.com/app/keys)
-
----
-
-> **Note:** Users can install and configure any web search MCP that fits their needs. The workflows use `use_mcp_tool` which works with any compatible MCP server. Exa and Brave Search are equal priority — choose based on your use case.
+Configure MCP servers in VS Code settings or agent frontmatter.
 
 ### Included
 
-- **27 Workflows** — Discovery, planning, execution, verification workflows
-- **11 Custom Modes** — Specialized agent modes (planner, executor, verifier, debugger, etc.)
-- **Templates** — All GSD document templates adapted for Kilo Code
+- **27 Prompt Files** — Discovery, planning, execution, verification prompts
+- **11 Custom Agents** — Specialized agents (planner, executor, verifier, debugger, etc.)
+- **12 Agent Skills** — Reusable skill definitions with detailed instructions
+- **9 Instructions** — Guidelines for checkpoints, git integration, TDD, etc.
 
 ---
 
@@ -182,11 +145,10 @@ For real-time web search, you can use **any** web search MCP server. **Recommend
 cd your-project
 
 # Clone the GSD template
-git clone https://github.com/punal100/get-stuff-done-for-kilocode.git gsd-template
+git clone https://github.com/Punal100/get-stuff-done-for-github-copilot.git gsd-template
 
 # Copy to your project
-Copy-Item gsd-template\.kilocodemodes .\
-Copy-Item -Recurse gsd-template\.kilocode .\
+Copy-Item -Recurse gsd-template\.github .\
 Copy-Item -Recurse gsd-template\.gsd .\
 
 # Clean up
@@ -200,52 +162,61 @@ Remove-Item -Recurse -Force gsd-template
 cd your-project
 
 # Clone the GSD template
-git clone https://github.com/punal100/get-stuff-done-for-kilocode.git gsd-template
+git clone https://github.com/Punal100/get-stuff-done-for-github-copilot.git gsd-template
 
 # Copy to your project
-cp gsd-template/.kilocodemodes ./
-cp -r gsd-template/.kilocode ./
+cp -r gsd-template/.github ./
 cp -r gsd-template/.gsd ./
 
 # Clean up
 rm -rf gsd-template
 ```
 
-Then reload VS Code and use the `new-project` skill to get started.
+Then reload VS Code and use the `@gsd-planner` agent or `gsd:new-project` prompt to get started.
 
 ---
 
 ## Installation
 
 1. Clone or copy this repository into your project
-2. Reload VS Code to pick up the skills and modes
-3. The skills will appear in Kilo Code's skill selector
+2. Reload VS Code to pick up the agents, prompts, and instructions
+3. Enable GitHub Copilot customization features in VS Code settings
+
+### VS Code Settings
+
+Enable the customization features:
+
+```json
+{
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "chat.promptFilesLocations": [".github/prompts"],
+  "chat.instructionsFilesLocations": [".github/instructions"]
+}
+```
 
 ### Structure
 
 ```
-.kilocode/
-├── skills/
-│   ├── complete-milestone/
-│   ├── diagnose-issues/
-│   ├── discovery-phase/
-│   ├── discuss-phase/
-│   ├── execute-phase/
+.github/
+├── agents/                   # Custom Agents (.agent.md)
+│   ├── gsd-executor.agent.md
+│   ├── gsd-planner.agent.md
+│   ├── gsd-verifier.agent.md
+│   └── ... (11 total)
+├── prompts/                  # Prompt Files (.prompt.md)
+│   ├── new-project.prompt.md
+│   ├── execute-phase.prompt.md
+│   ├── plan-phase.prompt.md
+│   └── ... (27 total)
+├── skills/                   # Agent Skills
 │   ├── execute-plan/
-│   ├── list-phase-assumptions/
-│   ├── map-codebase/
-│   ├── resume-project/
-│   ├── transition/
 │   ├── verify-phase/
-│   └── verify-work/
-├── rules/                    # Global rules for all modes
-├── rules-gsd-executor/       # Mode-specific rules
-├── rules-gsd-planner/
-├── rules-gsd-verifier/
-│   └── ...
-└── workflows/                # Workflow definitions
-
-.kilocodemodes                # 11 custom agent modes
+│   └── ... (12 total)
+├── instructions/             # Custom Instructions
+│   ├── git-integration.instructions.md
+│   ├── checkpoints.instructions.md
+│   └── ... (9 total)
+└── copilot-instructions.md   # Global instructions (optional)
 
 .gsd/                         # Project planning data (created per-project)
 ├── PROJECT.md                # Project vision
@@ -254,26 +225,8 @@ Then reload VS Code and use the `new-project` skill to get started.
 ├── STATE.md                  # Current position, decisions, memory
 ├── config.json               # GSD settings
 ├── research/                 # Domain research outputs
-│   ├── STACK.md
-│   ├── FEATURES.md
-│   ├── ARCHITECTURE.md
-│   ├── PITFALLS.md
-│   └── SUMMARY.md
 ├── codebase/                 # Codebase analysis (from map-codebase)
-│   ├── STACK.md
-│   ├── ARCHITECTURE.md
-│   ├── STRUCTURE.md
-│   ├── CONVENTIONS.md
-│   ├── TESTING.md
-│   ├── INTEGRATIONS.md
-│   └── CONCERNS.md
 ├── phases/                   # Phase-specific files
-│   ├── 01-CONTEXT.md
-│   ├── 01-RESEARCH.md
-│   ├── 01-PLAN.md
-│   ├── 01-SUMMARY.md
-│   ├── 01-VERIFICATION.md
-│   └── ...
 ├── milestones/               # Archived milestones
 ├── debug/                    # Debug session files
 ├── quick/                    # Quick mode task files
@@ -305,28 +258,24 @@ For full documentation on the GSD methodology, see the [original project](https:
 
 ---
 
-## Skills Reference
+## Prompt Reference
 
-| Skill                    | Purpose                             |
-| ------------------------ | ----------------------------------- |
-| `complete-milestone`     | Archive milestone, tag release      |
-| `diagnose-issues`        | Debug UAT gaps with parallel agents |
-| `discovery-phase`        | Research before planning            |
-| `discuss-phase`          | Capture implementation decisions    |
-| `execute-phase`          | Run plans in parallel waves         |
-| `execute-plan`           | Execute single plan with commits    |
-| `list-phase-assumptions` | Surface assumptions before planning |
-| `map-codebase`           | Analyze existing codebase           |
-| `resume-project`         | Restore context when resuming       |
-| `transition`             | Move to next phase                  |
-| `verify-phase`           | Goal-backward verification          |
-| `verify-work`            | User acceptance testing             |
+| Prompt              | Purpose                         |
+| ------------------- | ------------------------------- |
+| `gsd:new-project`   | Initialize new project          |
+| `gsd:plan-phase`    | Create phase plans              |
+| `gsd:execute-phase` | Execute plans in parallel waves |
+| `gsd:verify-work`   | User acceptance testing         |
+| `gsd:debug`         | Systematic debugging            |
+| `gsd:progress`      | Check project status            |
+| `gsd:quick`         | Quick tasks with GSD guarantees |
+| `gsd:help`          | Show command reference          |
 
 ---
 
-## Custom Modes
+## Custom Agents
 
-| Mode                          | Purpose                        |
+| Agent                         | Purpose                        |
 | ----------------------------- | ------------------------------ |
 | 🗺️ `gsd-codebase-mapper`      | Analyze codebase structure     |
 | 🐛 `gsd-debugger`             | Scientific debugging           |
@@ -344,7 +293,7 @@ For full documentation on the GSD methodology, see the [original project](https:
 
 ## Contributing
 
-This port aims to faithfully adapt GSD for Kilo Code. Contributions that improve the Kilo Code integration are welcome.
+This port aims to faithfully adapt GSD for GitHub Copilot. Contributions that improve the integration are welcome.
 
 For improvements to the core GSD methodology, please contribute to the [original project](https://github.com/glittercowboy/get-shit-done).
 
@@ -358,8 +307,12 @@ MIT License — Same as the original GSD project.
 
 <div align="center">
 
-**Original GSD by [glittercowboy](https://github.com/glittercowboy) — Kilo Code port**
+**Original GSD by [glittercowboy](https://github.com/glittercowboy)**
+
+**Kilo Code fork by [punal100](https://github.com/punal100)** — GitHub Copilot port
 
 ⭐ **Star the original:** https://github.com/glittercowboy/get-shit-done
+
+⭐ **Star the Kilo Code fork:** https://github.com/punal100/get-stuff-done-for-kilocode
 
 </div>

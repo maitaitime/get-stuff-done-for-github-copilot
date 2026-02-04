@@ -1,43 +1,43 @@
 # GSD-STYLE.md
 
-> **Comprehensive reference.** Core rules auto-load from `.KiloCode/rules/`. This document provides deep explanations and examples for when you need the full picture.
+> **Comprehensive reference.** Core rules auto-load from `.github/instructions/`. This document provides deep explanations and examples for when you need the full picture.
 
-This document explains how GSD is written so future KiloCode instances can contribute consistently.
+This document explains how GSD is written so future Copilot instances can contribute consistently.
 
 ## Core Philosophy
 
-GSD is a **meta-prompting system** where every file is both implementation and specification. Files teach KiloCode how to build software systematically. The system optimizes for:
+GSD is a **meta-prompting system** where every file is both implementation and specification. Files teach Copilot how to build software systematically. The system optimizes for:
 
-- **Solo developer + KiloCode workflow** (no enterprise patterns)
-- **Context engineering** (manage KiloCode's context window deliberately)
+- **Solo developer + Copilot workflow** (no enterprise patterns)
+- **Context engineering** (manage Copilot's context window deliberately)
 - **Plans as prompts** (PLAN.md files are executable, not documents to transform)
 
 ---
 
 ## File Structure Conventions
 
-### Slash Commands (`*.md`)
+### Prompt Files (`.github/prompts/*.prompt.md`)
 
 ```yaml
 ---
-name: gsd:command-name
-description: One-line description
-argument-hint: "<required>" or "[optional]"
-allowed-tools: [read_file, write_to_file, execute_command, list_files, search_files, ask_followup_question]
+name: "gsd:command-name"
+description: "One-line description"
+tools: ["readFile", "editFiles", "runInTerminal", "listDirectory", "textSearch"]
+model: "Claude Sonnet 4"
 ---
 ```
 
 **Section order:**
 
 1. `<objective>` — What/why/when (always present)
-2. `<execution_context>` — @-references to workflows, templates, references
-3. `<context>` — Dynamic content: `$ARGUMENTS`, bash output, @file refs
+2. `<execution_context>` — References to skills, instructions
+3. `<context>` — Dynamic content: `${input}`, bash output, file refs
 4. `<process>` or `<step>` elements — Implementation steps
 5. `<success_criteria>` — Measurable completion checklist
 
-**Commands are thin wrappers.** Delegate detailed logic to workflows.
+**Prompts are thin wrappers.** Delegate detailed logic to skills.
 
-### Workflows (`get-stuff-done/workflows/*.md`)
+### Skills (`.github/skills/*/SKILL.md`)
 
 No YAML frontmatter. Structure varies by workflow.
 
@@ -128,7 +128,7 @@ Build authentication system
 
 **Task types:**
 
-- `type="auto"` — KiloCode executes autonomously
+- `type="auto"` — Copilot executes autonomously
 - `type="checkpoint:human-verify"` — User must verify
 - `type="checkpoint:decision"` — User must choose
 
@@ -169,12 +169,13 @@ Build authentication system
 
 ---
 
-## @-Reference Patterns
+## File Reference Patterns
 
-**Static references** (always load):
+**Static references** (use markdown links):
 
-```
-@~/.KiloCode/get-stuff-done/workflows/execute-phase.md
+```markdown
+[Execute Phase Skill](../skills/execute-phase/SKILL.md)
+[Git Integration](../instructions/git-integration.instructions.md)
 @.gsd/PROJECT.md
 ```
 
@@ -184,7 +185,7 @@ Build authentication system
 @.gsd/DISCOVERY.md (if exists)
 ```
 
-**@-references are lazy loading signals.** They tell KiloCode what to read, not pre-loaded content.
+**File references are lazy loading signals.** They tell Copilot what to read, not pre-loaded content.
 
 ---
 
@@ -465,7 +466,7 @@ docs(quick-NNN): description
 
 Quick task completed.
 
-Co-Authored-By: KiloCode Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: GitHub Copilot <noreply@github.com>
 ```
 
 ---
@@ -512,16 +513,16 @@ How to make tests pass
 ## Summary: Core Meta-Patterns
 
 1. **XML for semantic structure, Markdown for content**
-2. **@-references are lazy loading signals**
-3. **Commands delegate to workflows**
+2. **File references are lazy loading signals**
+3. **Prompts delegate to skills**
 4. **Progressive disclosure hierarchy**
 5. **Imperative, brief, technical** — no filler, no sycophancy
-6. **Solo developer + KiloCode** — no enterprise patterns
+6. **Solo developer + Copilot** — no enterprise patterns
 7. **Context size as quality constraint** — split aggressively
 8. **Temporal language banned** — current state only
 9. **Plans ARE prompts** — executable, not documents
 10. **Atomic commits** — Git history as context source
-11. **AskUserQuestion for all exploration** — always options
+11. **Options for all exploration** — always provide choices
 12. **Checkpoints post-automation** — automate first, verify after
 13. **Deviation rules are automatic** — no permission for bugs/critical
 14. **Depth controls compression** — derive from actual work
