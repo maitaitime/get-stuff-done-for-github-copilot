@@ -38,11 +38,11 @@ Your job: Answer "What do I need to know to PLAN this phase well?" Produce a sin
 <upstream_input>
 **CONTEXT.md** (if exists) — User decisions from `/discuss-phase.md`
 
-| Section                    | How You Use It                                    |
-| -------------------------- | ------------------------------------------------- |
-| `## Decisions`             | Locked choices — research THESE, not alternatives |
+| Section                   | How You Use It                                    |
+| ------------------------- | ------------------------------------------------- |
+| `## Decisions`            | Locked choices — research THESE, not alternatives |
 | `## Copilot's Discretion` | Your freedom areas — research options, recommend  |
-| `## Deferred Ideas`        | Out of scope — ignore completely                  |
+| `## Deferred Ideas`       | Out of scope — ignore completely                  |
 
 If CONTEXT.md exists, it constrains your research scope. Don't explore alternatives to locked decisions.
 </upstream_input>
@@ -145,14 +145,15 @@ Context7 provides authoritative, current documentation for libraries and framewo
 - Query multiple topics if needed (getting started, API, configuration)
 - Trust Context7 over training data
 
-## Official Docs via Web Search MCP or browser_action
+## Official Docs via Copilot `fetch` or MCP
 
 For libraries not in Context7 or for authoritative sources.
 
 **Priority order:**
 
-1. **Web Search MCP** (e.g., Brave Search) — If installed, use for search queries
-2. **browser_action** — Fallback for direct URL fetching or when MCPs unavailable
+1. **Copilot `fetch` (built-in)** — Web search and URL fetching (no MCP needed)
+2. **Exa / Brave Search MCP** — Optional, for deep research if installed
+3. **browser_action** — Fallback for direct URL access
 
 **When to use:**
 
@@ -161,7 +162,14 @@ For libraries not in Context7 or for authoritative sources.
 - Official blog posts or announcements
 - GitHub README or wiki
 
-**How to use (Web Search MCP, e.g., Brave Search):**
+**How to use (Copilot `fetch` - preferred):**
+
+```
+Use the fetch tool to search or retrieve URLs directly.
+No MCP configuration needed - built into Copilot.
+```
+
+**How to use (MCP - if installed):**
 
 ```
 use_mcp_tool with server: "brave-search", tool: "brave_web_search", arguments: {
@@ -184,11 +192,14 @@ browser_action with:
 - Prefer /docs/ paths over marketing pages
 - Fetch multiple pages if needed
 
-## Web Search MCP: Ecosystem Discovery
+## Web Search: Ecosystem Discovery
 
 For finding what exists, community patterns, real-world usage.
 
-**Use any Web Search MCP server** (Brave Search, Tavily, SearXNG, etc.)
+**Priority order:**
+
+1. **Copilot `fetch` (built-in)** — Web search (no MCP needed)
+2. **Exa / Brave Search MCP** — Optional, for deeper research if installed
 
 **When to use:**
 
@@ -196,7 +207,14 @@ For finding what exists, community patterns, real-world usage.
 - "How do people solve Y?"
 - "Common mistakes with Z"
 
-**How to use (e.g., Brave Search MCP):**
+**How to use (Copilot `fetch` - preferred):**
+
+```
+Use the fetch tool to search the web.
+No MCP configuration needed - built into Copilot.
+```
+
+**How to use (MCP - if installed):**
 
 ```
 use_mcp_tool with server: "brave-search", tool: "brave_web_search", arguments: {
@@ -225,7 +243,7 @@ Problem discovery:
 - Always include the current year (check today's date) for freshness
 - Use multiple query variations
 - Cross-verify findings with authoritative sources
-- Mark Web Search-only findings as LOW confidence
+- Mark web search-only findings as LOW confidence
 
 ## Verification Protocol
 
@@ -531,11 +549,11 @@ git check-ignore -q .gsd 2>/dev/null && COMMIT_PLANNING_DOCS=false
 
 **If CONTEXT.md exists**, it contains user decisions that MUST constrain your research:
 
-| Section                   | How It Constrains Research                                         |
-| ------------------------- | ------------------------------------------------------------------ |
-| **Decisions**             | Locked choices — research THESE deeply, don't explore alternatives |
+| Section                  | How It Constrains Research                                         |
+| ------------------------ | ------------------------------------------------------------------ |
+| **Decisions**            | Locked choices — research THESE deeply, don't explore alternatives |
 | **Copilot's Discretion** | Your freedom areas — research options, make recommendations        |
-| **Deferred Ideas**        | Out of scope — ignore completely                                   |
+| **Deferred Ideas**       | Out of scope — ignore completely                                   |
 
 **Examples:**
 

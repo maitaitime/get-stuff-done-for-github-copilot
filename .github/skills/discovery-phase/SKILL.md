@@ -29,13 +29,21 @@ NOTE: For comprehensive ecosystem research ("how do experts build this"), use /r
 
 Copilot's training data is 6-18 months stale. Always verify.
 
-1. **Context7 MCP FIRST** - Use `use_mcp_tool(context7, ...)` for current docs, no hallucination
-2. **Web Search MCP** - Use Exa or Brave Search (equal priority, choose by use case):
+**Priority Order:**
+
+1. **Context7 MCP FIRST** - Use `use_mcp_tool(context7, ...)` for current library/framework docs
+2. **Copilot `fetch` (built-in)** - Use for web search and fetching URLs (no MCP needed)
+3. **Exa / Brave Search MCP** - Optional, for deep research when `fetch` insufficient:
    - **Exa MCP** - `use_mcp_tool(exa, web_search_exa)` — AI-native semantic search, code search, company research
    - **Brave Search** - `use_mcp_tool(brave-search, brave_web_search)` — Privacy-first, general queries, news
-3. **browser_action LAST** - Fallback for direct URL access or when MCPs unavailable
 
-**Exa Tools:**
+**Why this order:**
+
+- Context7 has authoritative, current library documentation
+- Copilot's `fetch` is built-in and requires no MCP setup
+- Exa/Brave are external MCP servers (optional for users who install them)
+
+**Exa Tools (if installed):**
 
 - `web_search_exa` — Search web for any topic, get clean content
 - `get_code_context_exa` — Find code from GitHub, Stack Overflow, docs
@@ -110,15 +118,17 @@ For: Choosing between options, new external integration.
    - use_mcp_tool(context7, query-docs) for API and concepts
    ```
 
-3. **Official docs** for anything Context7 lacks (use Web Search MCP or browser_action).
+3. **Official docs** for anything Context7 lacks (use `fetch` or browser_action).
 
-4. **Web Search MCP** for comparisons:
+4. **Web search** for comparisons:
    - "[option A] vs [option B] {current_year}"
    - "[option] known issues"
    - "[option] with [our stack]"
-   - `use_mcp_tool(exa, web_search_exa)` — Best for semantic/conceptual queries
-   - `use_mcp_tool(exa, get_code_context_exa)` — Best for code examples
-   - `use_mcp_tool(brave-search, brave_web_search)` — Best for news, general queries
+   - Use Copilot's built-in `fetch` tool first
+   - If more depth needed and MCP installed:
+     - `use_mcp_tool(exa, web_search_exa)` — Best for semantic/conceptual queries
+     - `use_mcp_tool(exa, get_code_context_exa)` — Best for code examples
+     - `use_mcp_tool(brave-search, brave_web_search)` — Best for news, general queries
 
 5. **Cross-verify:** Any Web Search finding → confirm with Context7/official docs.
 
@@ -156,15 +166,16 @@ For: Architectural decisions, novel problems, high-risk choices.
    - Migration/upgrade guides
    - Known limitations
 
-4. **Web Search MCP for ecosystem context:**
+4. **Web search for ecosystem context:**
    - How others solved similar problems
    - Production experiences
    - Gotchas and anti-patterns
    - Recent changes/announcements
-   - `use_mcp_tool(exa, deep_search_exa)` — Thorough research with query expansion
-   - `use_mcp_tool(exa, company_research_exa)` — When researching vendors/companies
-   - `use_mcp_tool(brave-search, brave_web_search)` — News, general queries
-   - browser_action fallback for direct URL access
+   - Use Copilot's built-in `fetch` tool first
+   - If more depth needed and MCP installed:
+     - `use_mcp_tool(exa, deep_search_exa)` — Thorough research with query expansion
+     - `use_mcp_tool(exa, company_research_exa)` — When researching vendors/companies
+     - `use_mcp_tool(brave-search, brave_web_search)` — News, general queries
 
 5. **Cross-verify ALL findings:**
    - Every Web Search claim → verify with authoritative source

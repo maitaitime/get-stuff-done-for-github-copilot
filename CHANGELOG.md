@@ -6,6 +6,25 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-02-04
+
+### Changed
+
+- Updated web search priority order:
+  1. Context7 MCP (library/framework documentation)
+  2. Copilot `fetch` (built-in web search, no MCP needed)
+  3. Exa / Brave Search MCP (optional, for deep research)
+- Updated README MCP Server Support section with priority table
+- Updated discovery-phase skill source_hierarchy with new priority
+- Updated gsd-project-researcher agent tool_strategy with new priority
+- Updated gsd-phase-researcher agent tool_strategy with new priority
+
+### Documentation
+
+- Added priority order table to README MCP section
+- Clarified that Copilot's `fetch` is built-in and requires no MCP setup
+- Exa/Brave Search MCP now marked as optional for users who install them
+
 ## [1.1.0] - 2025-02-04
 
 ### Added

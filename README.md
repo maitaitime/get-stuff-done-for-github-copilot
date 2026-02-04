@@ -118,14 +118,23 @@ GSD agents leverage GitHub Copilot's codebase tools for efficient code explorati
 
 ### 🔌 MCP Server Support
 
-GitHub Copilot supports MCP (Model Context Protocol) servers for extended capabilities. GSD workflows can leverage:
+GitHub Copilot supports MCP (Model Context Protocol) servers for extended capabilities. GSD workflows use this priority:
+
+| Priority | Tool/Server                       | Use Case                                        |
+| -------- | --------------------------------- | ----------------------------------------------- |
+| 1        | Context7 MCP                      | Library/framework documentation (most accurate) |
+| 2        | Copilot `fetch` (built-in)        | Web search, fetching URLs (no MCP needed)       |
+| 3        | Exa / Brave Search MCP (optional) | Deep research, company info, news               |
+| 4        | HumanAgent MCP                    | Get user input mid-workflow                     |
+
+**MCP Server Tools:**
 
 | MCP Server   | Tools                                    | Use Case                    |
 | ------------ | ---------------------------------------- | --------------------------- |
-| HumanAgent   | `HumanAgent_Chat`                        | Get user input mid-workflow |
 | Context7     | `resolve-library-id`, `query-docs`       | Library documentation       |
-| Exa          | `web_search_exa`, `get_code_context_exa` | Code search, research       |
-| Brave Search | `brave_web_search`                       | General web search          |
+| HumanAgent   | `HumanAgent_Chat`                        | Get user input mid-workflow |
+| Exa          | `web_search_exa`, `get_code_context_exa` | Code search, deep research  |
+| Brave Search | `brave_web_search`                       | General web search, news    |
 
 Configure MCP servers in VS Code settings or agent frontmatter.
 

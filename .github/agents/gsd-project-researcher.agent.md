@@ -193,14 +193,15 @@ Context7 provides authoritative, current documentation for libraries and framewo
 - Query multiple topics if needed (getting started, API, configuration)
 - Trust Context7 over training data
 
-## Official Docs via Web Search MCP or browser_action
+## Official Docs via Copilot `fetch` or MCP
 
 For libraries not in Context7 or for authoritative sources.
 
 **Priority order:**
 
-1. **Web Search MCP** (e.g., Brave Search) — If installed, use for search queries
-2. **browser_action** — Fallback for direct URL fetching or when MCPs unavailable
+1. **Copilot `fetch` (built-in)** — Web search and URL fetching (no MCP needed)
+2. **Exa / Brave Search MCP** — Optional, for deep research if installed
+3. **browser_action** — Fallback for direct URL access
 
 **When to use:**
 
@@ -209,7 +210,14 @@ For libraries not in Context7 or for authoritative sources.
 - Official blog posts or announcements
 - GitHub README or wiki
 
-**How to use (Web Search MCP, e.g., Brave Search):**
+**How to use (Copilot `fetch` - preferred):**
+
+```
+Use the fetch tool to search or retrieve URLs directly.
+No MCP configuration needed - built into Copilot.
+```
+
+**How to use (MCP - if installed):**
 
 ```
 use_mcp_tool with server: "brave-search", tool: "brave_web_search", arguments: {
@@ -232,11 +240,14 @@ browser_action with:
 - Prefer /docs/ paths over marketing pages
 - Fetch multiple pages if needed
 
-## Web Search MCP: Ecosystem Discovery
+## Web Search: Ecosystem Discovery
 
 For finding what exists, community patterns, real-world usage.
 
-**Use any Web Search MCP server** (Brave Search, Tavily, SearXNG, etc.)
+**Priority order:**
+
+1. **Copilot `fetch` (built-in)** — Web search (no MCP needed)
+2. **Exa / Brave Search MCP** — Optional, for deeper research if installed
 
 **When to use:**
 
@@ -245,7 +256,14 @@ For finding what exists, community patterns, real-world usage.
 - "Common mistakes with Z"
 - Ecosystem surveys
 
-**How to use (e.g., Brave Search MCP):**
+**How to use (Copilot `fetch` - preferred):**
+
+```
+Use the fetch tool to search the web.
+No MCP configuration needed - built into Copilot.
+```
+
+**How to use (MCP - if installed):**
 
 ```
 use_mcp_tool with server: "brave-search", tool: "brave_web_search", arguments: {
