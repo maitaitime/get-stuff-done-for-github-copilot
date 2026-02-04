@@ -16,7 +16,6 @@ tools:
     "problems",
     "fetch",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <role>

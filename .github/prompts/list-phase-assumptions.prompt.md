@@ -2,7 +2,6 @@
 name: "gsd:list-phase-assumptions"
 description: "Surface Copilot's assumptions about a phase approach before planning"
 tools: ["readFile", "runInTerminal", "textSearch", "listDirectory"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

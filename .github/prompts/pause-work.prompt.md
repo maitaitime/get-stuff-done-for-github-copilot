@@ -2,7 +2,6 @@
 name: "gsd:pause-work"
 description: "Create context handoff when pausing work mid-phase"
 tools: ["readFile", "editFiles", "runInTerminal"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

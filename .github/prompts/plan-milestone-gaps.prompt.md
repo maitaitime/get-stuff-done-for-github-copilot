@@ -2,7 +2,6 @@
 name: "gsd:plan-milestone-gaps"
 description: "Create phases to close all gaps identified by milestone audit"
 tools: ["readFile", "editFiles", "runInTerminal", "listDirectory", "textSearch"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

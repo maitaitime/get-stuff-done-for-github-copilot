@@ -13,7 +13,6 @@ tools:
     "terminalLastCommand",
     "problems",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <role>

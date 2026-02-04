@@ -11,7 +11,6 @@ tools:
     "runSubagent",
     "todos",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

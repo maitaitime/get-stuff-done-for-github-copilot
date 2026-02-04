@@ -2,7 +2,6 @@
 name: "gsd:discuss-phase"
 description: "Gather phase context through adaptive questioning before planning"
 tools: ["readFile", "editFiles", "runInTerminal", "listDirectory", "textSearch"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

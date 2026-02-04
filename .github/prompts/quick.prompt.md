@@ -10,7 +10,6 @@ tools:
     "runInTerminal",
     "runSubagent",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

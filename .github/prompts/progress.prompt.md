@@ -2,7 +2,6 @@
 name: "gsd:progress"
 description: "Check project progress, show context, and route to next action"
 tools: ["readFile", "runInTerminal", "textSearch", "listDirectory"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

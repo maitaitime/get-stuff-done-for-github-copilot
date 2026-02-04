@@ -2,7 +2,6 @@
 name: "gsd:add-phase"
 description: "Add phase to end of current milestone in roadmap"
 tools: ["readFile", "editFiles", "runInTerminal"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

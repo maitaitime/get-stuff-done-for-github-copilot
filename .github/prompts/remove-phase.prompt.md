@@ -2,7 +2,6 @@
 name: "gsd:remove-phase"
 description: "Remove a future phase from roadmap and renumber subsequent phases"
 tools: ["readFile", "editFiles", "runInTerminal", "listDirectory"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

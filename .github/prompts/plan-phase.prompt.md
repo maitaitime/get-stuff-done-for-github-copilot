@@ -12,7 +12,6 @@ tools:
     "runSubagent",
     "fetch",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <execution_context>

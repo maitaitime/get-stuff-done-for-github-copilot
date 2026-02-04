@@ -2,7 +2,6 @@
 name: "gsd:update"
 description: "Update GSD to latest version via git pull"
 tools: ["readFile", "runInTerminal", "fetch"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

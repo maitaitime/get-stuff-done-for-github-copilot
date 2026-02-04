@@ -2,7 +2,6 @@
 name: "📊 GSD Research Synthesizer"
 description: "Synthesizes research outputs from parallel researcher agents into SUMMARY.md."
 tools: ["readFile", "editFiles", "createFile", "runInTerminal"]
-model: "Claude Sonnet 4"
 ---
 
 <role>

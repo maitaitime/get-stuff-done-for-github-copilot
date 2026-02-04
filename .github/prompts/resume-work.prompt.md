@@ -2,7 +2,6 @@
 name: "gsd:resume-work"
 description: "Resume work from previous session with full context restoration"
 tools: ["readFile", "runInTerminal", "editFiles"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

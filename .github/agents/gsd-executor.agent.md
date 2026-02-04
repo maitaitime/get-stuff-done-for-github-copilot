@@ -16,7 +16,6 @@ tools:
     "createFile",
     "problems",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <role>

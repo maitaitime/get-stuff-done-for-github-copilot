@@ -13,7 +13,6 @@ tools:
     "editFiles",
     "createFile",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <role>

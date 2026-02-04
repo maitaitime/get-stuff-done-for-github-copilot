@@ -2,7 +2,6 @@
 name: "gsd:check-todos"
 description: "List pending todos and select one to work on"
 tools: ["readFile", "editFiles", "runInTerminal", "listDirectory"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

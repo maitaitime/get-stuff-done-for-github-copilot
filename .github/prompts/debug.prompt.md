@@ -2,7 +2,6 @@
 name: "gsd:debug"
 description: "Systematic debugging with persistent state across context resets"
 tools: ["readFile", "runInTerminal", "runSubagent"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

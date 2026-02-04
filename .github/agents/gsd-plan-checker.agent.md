@@ -12,7 +12,6 @@ tools:
     "runInTerminal",
     "problems",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <role>

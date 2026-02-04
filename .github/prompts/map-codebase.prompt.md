@@ -10,7 +10,6 @@ tools:
     "editFiles",
     "runSubagent",
   ]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

@@ -6,6 +6,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.2.1] - 2025-02-04
+
+### Changed
+
+- Removed hardcoded `model: "Claude Sonnet 4"` from all agent configuration files (model selection now uses default/user preference)
+- Removed hardcoded `model: "Claude Sonnet 4"` from all prompt configuration files
+- Updated 11 agent files in `.github/agents/` to remove model declaration
+- Updated 23 prompt files in `.github/prompts/` to remove model declaration
+
+### Files Modified
+
+- `.github/agents/` (11 files): gsd-codebase-mapper, gsd-debugger, gsd-executor, gsd-integration-checker, gsd-phase-researcher, gsd-plan-checker, gsd-planner, gsd-project-researcher, gsd-research-synthesizer, gsd-roadmapper, gsd-verifier
+- `.github/prompts/` (23 files): add-phase, add-todo, audit-milestone, check-todos, complete-milestone, debug, discuss-phase, execute-phase, insert-phase, list-phase-assumptions, map-codebase, new-milestone, new-project, pause-work, plan-milestone-gaps, plan-phase, progress, quick, remove-phase, research-phase, resume-work, set-profile, settings, update, verify-work
+
 ## [1.2.0] - 2025-02-04
 
 ### Changed

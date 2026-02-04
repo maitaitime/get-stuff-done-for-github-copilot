@@ -2,7 +2,6 @@
 name: "gsd:settings"
 description: "Configure GSD workflow toggles and model profile"
 tools: ["readFile", "editFiles", "createFile"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>

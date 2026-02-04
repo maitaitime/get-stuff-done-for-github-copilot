@@ -2,7 +2,6 @@
 name: "gsd:complete-milestone"
 description: "Archive completed milestone and prepare for next version"
 tools: ["readFile", "editFiles", "runInTerminal"]
-model: "Claude Sonnet 4"
 ---
 
 <objective>
