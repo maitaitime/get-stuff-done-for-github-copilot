@@ -70,7 +70,7 @@ The full tool chain from Claude Code → Kilo Code → GitHub Copilot:
 | `Grep`                   | `search_files`                    | `textSearch`                  | Regex search across files      |
 | `Glob`                   | `list_files`                      | `listDirectory`, `fileSearch` | List directory contents        |
 | `Task`                   | `new_task`                        | `runSubagent`                 | Spawn subtasks/subagents       |
-| `AskUserQuestion`        | `ask_followup_question`           | 'vscode/askQuestions'         | Get user input                 |
+| `AskUserQuestion`        | `ask_followup_question`           | `vscode/askQuestions`         | Get user input                 |
 | `TodoWrite`              | `update_todo_list`                | `todos`                       | Track task progress            |
 | `WebSearch` / `WebFetch` | `use_mcp_tool` → `browser_action` | `fetch`                       | Web access                     |
 | `SlashCommand`           | `switch_mode`                     | N/A (use agents)              | Change modes                   |
@@ -87,7 +87,7 @@ The full tool chain from Claude Code → Kilo Code → GitHub Copilot:
 | Terminal | `execute_command`                                                                          | `runInTerminal`, `terminalLastCommand`, `getTerminalOutput`, `runTask`        |
 | Web      | `browser_action`, `use_mcp_tool`                                                           | `fetch`, `openSimpleBrowser`                                                  |
 | MCP      | `use_mcp_tool`, `access_mcp_resource`                                                      | MCP server tools                                                              |
-| Human    | `ask_followup_question`                                                                    | 'vscode/askQuestions'                                            |
+| Human    | `ask_followup_question`                                                                    | `vscode/askQuestions`                                            |
 
 For full tool documentation:
 
