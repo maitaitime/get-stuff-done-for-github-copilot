@@ -649,10 +649,10 @@ Options:
 3. **Keep branches** — Leave for manual handling
 ```
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 ```
-HumanAgent MCP (HumanAgent_Chat)([
+questions: [
   {
     question: "How should branches be handled?",
     header: "Branches",
@@ -664,7 +664,7 @@ HumanAgent MCP (HumanAgent_Chat)([
       { label: "Keep branches", description: "Leave branches for manual handling later" }
     ]
   }
-])
+]
 ```
 
 **If "Squash merge":**

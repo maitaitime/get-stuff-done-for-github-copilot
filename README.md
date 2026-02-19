@@ -70,7 +70,7 @@ The full tool chain from Claude Code → Kilo Code → GitHub Copilot:
 | `Grep`                   | `search_files`                    | `textSearch`                  | Regex search across files      |
 | `Glob`                   | `list_files`                      | `listDirectory`, `fileSearch` | List directory contents        |
 | `Task`                   | `new_task`                        | `runSubagent`                 | Spawn subtasks/subagents       |
-| `AskUserQuestion`        | `ask_followup_question`           | HumanAgent MCP                | Get user input                 |
+| `AskUserQuestion`        | `ask_followup_question`           | 'vscode/askQuestions'         | Get user input                 |
 | `TodoWrite`              | `update_todo_list`                | `todos`                       | Track task progress            |
 | `WebSearch` / `WebFetch` | `use_mcp_tool` → `browser_action` | `fetch`                       | Web access                     |
 | `SlashCommand`           | `switch_mode`                     | N/A (use agents)              | Change modes                   |
@@ -87,7 +87,7 @@ The full tool chain from Claude Code → Kilo Code → GitHub Copilot:
 | Terminal | `execute_command`                                                                          | `runInTerminal`, `terminalLastCommand`, `getTerminalOutput`, `runTask`        |
 | Web      | `browser_action`, `use_mcp_tool`                                                           | `fetch`, `openSimpleBrowser`                                                  |
 | MCP      | `use_mcp_tool`, `access_mcp_resource`                                                      | MCP server tools                                                              |
-| Human    | `ask_followup_question`                                                                    | HumanAgent MCP (`HumanAgent_Chat`)                                            |
+| Human    | `ask_followup_question`                                                                    | 'vscode/askQuestions'                                            |
 
 For full tool documentation:
 
@@ -125,14 +125,12 @@ GitHub Copilot supports MCP (Model Context Protocol) servers for extended capabi
 | 1        | Context7 MCP                      | Library/framework documentation (most accurate) |
 | 2        | Copilot `fetch` (built-in)        | Web search, fetching URLs (no MCP needed)       |
 | 3        | Exa / Brave Search MCP (optional) | Deep research, company info, news               |
-| 4        | HumanAgent MCP                    | Get user input mid-workflow                     |
 
 **MCP Server Tools:**
 
 | MCP Server   | Tools                                    | Use Case                    |
 | ------------ | ---------------------------------------- | --------------------------- |
 | Context7     | `resolve-library-id`, `query-docs`       | Library documentation       |
-| HumanAgent   | `HumanAgent_Chat`                        | Get user input mid-workflow |
 | Exa          | `web_search_exa`, `get_code_context_exa` | Code search, deep research  |
 | Brave Search | `brave_web_search`                       | General web search, news    |
 

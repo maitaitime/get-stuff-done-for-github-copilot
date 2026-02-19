@@ -1,7 +1,7 @@
 ---
 name: "gsd:settings"
 description: "Configure GSD workflow toggles and model profile"
-tools: ["readFile", "editFiles", "createFile"]
+tools: ["readFile", "editFiles", "createFile", "vscode/askQuestions"]
 ---
 
 <objective>
@@ -36,10 +36,10 @@ Parse current values (default to `true` if not present):
 
 ## 3. Present Settings
 
-Use HumanAgent MCP (HumanAgent_Chat) with current values shown:
+Use #tool:vscode/askQuestions:
 
 ```
-HumanAgent MCP (HumanAgent_Chat)([
+questions: [
   {
     question: "Which model profile for agents?",
     header: "Model",
@@ -87,7 +87,7 @@ HumanAgent MCP (HumanAgent_Chat)([
       { label: "Per Milestone", description: "Create branch for entire milestone (gsd/{version}-{name})" }
     ]
   }
-])
+]
 ```
 
 **Pre-select based on current config values.**

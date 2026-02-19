@@ -1,7 +1,7 @@
 ---
 name: "gsd:update"
 description: "Update GSD to latest version via git pull"
-tools: ["readFile", "runInTerminal", "fetch"]
+tools: ["readFile", "runInTerminal", "fetch", "vscode/askQuestions"]
 ---
 
 <objective>
@@ -54,7 +54,7 @@ If you've modified any GSD files directly, consider:
 - Or committing your changes before updating
 ```
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - Question: "Proceed with update?"
 - Options:

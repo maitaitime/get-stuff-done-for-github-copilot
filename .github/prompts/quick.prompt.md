@@ -9,6 +9,7 @@ tools:
     "textSearch",
     "runInTerminal",
     "runSubagent",
+    "vscode/askQuestions",
   ]
 ---
 
@@ -77,13 +78,9 @@ Quick tasks can run mid-phase - validation only checks ROADMAP.md exists, not ph
 
 Prompt user interactively for the task description:
 
-```
-HumanAgent MCP (HumanAgent_Chat)(
-  header: "Quick Task",
-  question: "What do you want to do?",
-  followUp: null
-)
-```
+Use #tool:vscode/askQuestions:
+- header: "Quick Task"
+- question: "What do you want to do?"
 
 Store response as `$DESCRIPTION`.
 

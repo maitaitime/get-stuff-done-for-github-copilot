@@ -1,7 +1,7 @@
 ---
 name: "gsd:check-todos"
 description: "List pending todos and select one to work on"
-tools: ["readFile", "editFiles", "runInTerminal", "listDirectory"]
+tools: ["readFile", "editFiles", "runInTerminal", "listDirectory", "vscode/askQuestions"]
 ---
 
 <objective>
@@ -118,7 +118,7 @@ If roadmap exists:
 <step name="offer_actions">
 **If todo maps to a roadmap phase:**
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Action"
 - question: "This todo relates to Phase [N]: [name]. What would you like to do?"
@@ -130,7 +130,7 @@ Use HumanAgent MCP (HumanAgent_Chat):
 
 **If no roadmap match:**
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Action"
 - question: "What would you like to do with this todo?"

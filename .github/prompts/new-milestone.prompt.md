@@ -1,7 +1,7 @@
 ---
 name: "gsd:new-milestone"
 description: "Start a new milestone cycle — update PROJECT.md and route to requirements"
-tools: ["readFile", "editFiles", "runInTerminal", "runSubagent"]
+tools: ["readFile", "editFiles", "runInTerminal", "runSubagent", "vscode/askQuestions"]
 ---
 
 <objective>
@@ -60,7 +60,7 @@ Milestone name: $ARGUMENTS (optional - will prompt if not provided)
 
 - Present what shipped in last milestone
 - Ask: "What do you want to build next?"
-- Use HumanAgent MCP (HumanAgent_Chat) to explore features
+- Use #tool:vscode/askQuestions to explore features
 - Probe for priorities, constraints, scope
 
 ## Phase 3: Determine Milestone Version
@@ -144,7 +144,7 @@ Store resolved models for use in Task calls below.
 
 ## Phase 7: Research Decision
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Research"
 - question: "Research the domain ecosystem for new features before defining requirements?"
@@ -442,7 +442,7 @@ For each capability mentioned:
 
 **Scope each category:**
 
-For each category, use HumanAgent MCP (HumanAgent_Chat):
+For each category, use #tool:vscode/askQuestions:
 
 - header: "[Category name]"
 - question: "Which [category] features are in this milestone?"
@@ -461,7 +461,7 @@ Track responses:
 
 **Identify gaps:**
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Additions"
 - question: "Any requirements research missed? (Features specific to your vision)"
@@ -626,7 +626,7 @@ Success criteria:
 
 **CRITICAL: Ask for approval before committing:**
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Roadmap"
 - question: "Does this roadmap structure work for you?"

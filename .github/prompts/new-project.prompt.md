@@ -9,6 +9,7 @@ tools:
     "createFile",
     "createDirectory",
     "runSubagent",
+    "vscode/askQuestions",
   ]
 ---
 
@@ -82,7 +83,7 @@ Check the results from setup step:
 - If `CODE_FILES` is non-empty OR `HAS_PACKAGE` is "yes"
 - AND `HAS_CODEBASE_MAP` is NOT "yes"
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Existing Code"
 - question: "I detected existing code in this directory. Would you like to map the codebase first?"
@@ -114,7 +115,7 @@ Exit command.
 
 **Open the conversation:**
 
-Ask inline (freeform, NOT HumanAgent MCP (HumanAgent_Chat)):
+Ask inline (freeform, NOT #tool:vscode/askQuestions):
 
 "What do you want to build?"
 
@@ -122,7 +123,7 @@ Wait for their response. This gives you the context needed to ask intelligent fo
 
 **Follow the thread:**
 
-Based on what they said, ask follow-up questions that dig into their response. Use HumanAgent MCP (HumanAgent_Chat) with options that probe what they mentioned — interpretations, clarifications, concrete examples.
+Based on what they said, ask follow-up questions that dig into their response. Use #tool:vscode/askQuestions with options that probe what they mentioned — interpretations, clarifications, concrete examples.
 
 Keep following threads. Each answer opens new threads to explore. Ask about:
 
@@ -146,7 +147,7 @@ As you go, mentally check the context checklist from `questioning.md`. If gaps r
 
 **Decision gate:**
 
-When you could write a clear PROJECT.md, use HumanAgent MCP (HumanAgent_Chat):
+When you could write a clear PROJECT.md, use #tool:vscode/askQuestions:
 
 - header: "Ready?"
 - question: "I think I understand what you're after. Ready to create PROJECT.md?"
@@ -307,6 +308,8 @@ These spawn additional agents during planning/execution. They add tokens and tim
 
 All recommended for important projects. Skip for quick experiments.
 
+Use #tool:vscode/askQuestions:
+
 ```
 questions: [
   {
@@ -414,7 +417,7 @@ Store resolved models for use in Task calls below.
 
 ## Phase 6: Research Decision
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Research"
 - question: "Research the domain ecosystem before defining requirements?"
@@ -720,7 +723,7 @@ For each capability mentioned:
 
 **Scope each category:**
 
-For each category, use HumanAgent MCP (HumanAgent_Chat):
+For each category, use #tool:vscode/askQuestions:
 
 - header: "[Category name]"
 - question: "Which [category] features are in v1?"
@@ -739,7 +742,7 @@ Track responses:
 
 **Identify gaps:**
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Additions"
 - question: "Any requirements research missed? (Features specific to your vision)"
@@ -910,7 +913,7 @@ Success criteria:
 
 **CRITICAL: Ask for approval before committing:**
 
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Roadmap"
 - question: "Does this roadmap structure work for you?"

@@ -237,7 +237,7 @@ Write `.gsd/phases/XX-name/DISCOVERY.md`:
 After creating DISCOVERY.md, check confidence level.
 
 If confidence is LOW:
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Low Confidence"
 - question: "Discovery confidence is LOW: [reason]. How would you like to proceed?"

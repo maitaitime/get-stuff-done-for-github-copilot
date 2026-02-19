@@ -1,7 +1,7 @@
 ---
 name: "gsd:debug"
 description: "Systematic debugging with persistent state across context resets"
-tools: ["readFile", "runInTerminal", "runSubagent"]
+tools: ["readFile", "runInTerminal", "runSubagent", "vscode/askQuestions"]
 ---
 
 <objective>
@@ -56,7 +56,7 @@ If $ARGUMENTS provided OR user describes new issue:
 
 ## 2. Gather Symptoms (if new issue)
 
-Use HumanAgent MCP (HumanAgent_Chat) for each:
+Use #tool:vscode/askQuestions for each:
 
 1. **Expected behavior** - What should happen?
 2. **Actual behavior** - What happens instead?

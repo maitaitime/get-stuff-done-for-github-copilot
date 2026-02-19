@@ -1,7 +1,7 @@
 ---
 name: "gsd:add-todo"
 description: "Capture idea or task as todo from current conversation context"
-tools: ["readFile", "editFiles", "runInTerminal", "listDirectory"]
+tools: ["readFile", "editFiles", "runInTerminal", "listDirectory", "vscode/askQuestions"]
 ---
 
 <objective>
@@ -76,7 +76,7 @@ If potential duplicate found:
 1. Read the existing todo
 2. Compare scope
 
-If overlapping, use HumanAgent MCP (HumanAgent_Chat):
+If overlapping, use #tool:vscode/askQuestions:
 
 - header: "Duplicate?"
 - question: "Similar todo exists: [title]. What would you like to do?"

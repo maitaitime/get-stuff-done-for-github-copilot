@@ -150,7 +150,7 @@ ls .gsd/phases/${PADDED_PHASE}-*/*-CONTEXT.md .gsd/phases/${PHASE}-*/*-CONTEXT.m
 ```
 
 **If exists:**
-Use HumanAgent MCP (HumanAgent_Chat):
+Use #tool:vscode/askQuestions:
 
 - header: "Existing context"
 - question: "Phase [X] already has context. What do you want to do?"
@@ -206,7 +206,7 @@ We'll clarify HOW to implement this.
 (New capabilities belong in other phases.)
 ```
 
-**Then use HumanAgent MCP (HumanAgent_Chat) (multiSelect: true):**
+**Then use #tool:vscode/askQuestions (multiSelect: true):**
 
 - header: "Discuss"
 - question: "Which areas do you want to discuss for [phase name]?"
@@ -263,10 +263,10 @@ Ask 4 questions per area before offering to continue or move on. Each answer oft
    Let's talk about [Area].
    ```
 
-2. **Ask 4 questions using HumanAgent MCP (HumanAgent_Chat):**
+2. **Ask 4 questions using #tool:vscode/askQuestions:**
    - header: "[Area]"
    - question: Specific decision for this area
-   - options: 2-3 concrete choices (HumanAgent MCP (HumanAgent_Chat) adds "Other" automatically)
+   - options: 2-3 concrete choices (#tool:vscode/askQuestions adds "Other" automatically)
    - Include "You decide" as an option when reasonable — captures Copilot discretion
 
 3. **After 4 questions, check:**
